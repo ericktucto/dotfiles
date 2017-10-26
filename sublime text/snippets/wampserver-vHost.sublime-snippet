@@ -1,0 +1,24 @@
+<snippet>
+	<content><![CDATA[
+#
+#	${1:NameProject}
+#
+
+<VirtualHost *:80>
+	ServerName ${2:URLVitualHost}
+	DocumentRoot ${3:c:/wamp64/www}
+#$5	ErrorLog "${3:c:/wamp64}/logs/${1:NameProject}/Error.log"
+#$5	CustomLog "${3:c:/wamp64}/logs/${1:NameProject}/Access.log"
+	<Directory "${3:c:/wamp64/www}$4/">
+		Options +Indexes +FollowSymLinks +MultiViews
+		AllowOverride All
+		Require local
+	</Directory>
+</VirtualHost>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wamp:dominio</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>text.xml</scope>
+	<scope>text.plain</scope> -->
+</snippet>

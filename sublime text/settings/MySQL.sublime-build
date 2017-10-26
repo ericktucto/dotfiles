@@ -1,0 +1,13 @@
+{
+	"cmd": [
+		// "C:\\wamp64\\bin\\mysql\\mysql5.7.14\\bin\\mysql.exe",
+		"mysql", // Como está en el PATH
+		"-h", "localhost",
+		"-u", "root",
+		// "-p", "secret",
+		"-h", "localhost",
+		"-e", "source $file", "-t"
+	],
+	"word_wrap": false,
+	"selector": "source.sql"
+}

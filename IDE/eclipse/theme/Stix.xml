@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<colorTheme id="45786" name="Stix" modified="2016-12-30 03:11:27" author="Erick">
+    <searchResultIndication color="#00F8D8" />
+    <filteredSearchResultIndication color="#00F8D8" />
+    <occurrenceIndication color="#1B6291" />
+    <writeOccurrenceIndication color="#1B6291" />
+    <findScope color="#00F8D8" />
+    <deletionIndication color="#D25252" underline="false" strikethrough="true" />
+    <sourceHoverBackground color="#00F8D8" />
+    <singleLineComment color="#646464" italic="true" underline="false" strikethrough="false" />
+    <multiLineComment color="#646464" italic="true" underline="false" strikethrough="false" />
+    <commentTaskTag color="#646464" italic="true" underline="false" strikethrough="false" />
+    <javadoc color="#646464" italic="true" underline="false" strikethrough="false" />
+    <javadocLink color="#82AAFF" italic="true" />
+    <javadocTag color="#D9E577" italic="true" />
+    <javadocKeyword color="#FF5370" italic="true" />
+    <class color="#FFCB6B" />
+    <interface color="#C3E88D" />
+    <method color="#82AAFF" />
+    <methodDeclaration color="#FFFFFF" underline="false" strikethrough="true" />
+    <bracket color="#00F8D8" underline="false" strikethrough="true" />
+    <number color="#F78C6C" />
+    <string color="#FFFFFF" />
+    <operator color="#89DDFF" />
+    <keyword color="#C792EA" bold="false" italic="false" underline="false" strikethrough="false" />
+    <annotation color="#89DDFF" underline="false" strikethrough="true" />
+    <staticMethod color="#FF5370" underline="true" strikethrough="false" />
+    <localVariable color="#C3E88D" underline="false" strikethrough="false" />
+    <localVariableDeclaration color="#FFFFFF" underline="false" strikethrough="true" />
+    <field color="#FFFFFF" />
+    <staticField color="#FF5370" bold="false" />
+    <staticFinalField color="#F78C6C" underline="false" strikethrough="false" />
+    <deprecatedMember color="#FFCB6B" underline="false" strikethrough="false" />
+    <enum color="#66D9EF" underline="false" strikethrough="true" />
+    <inheritedMethod color="#BED6FF" underline="false" strikethrough="true" />
+    <abstractMethod color="#BED6FF" underline="true" strikethrough="false" />
+    <parameterVariable color="#FF5370" />
+    <typeArgument color="#FFCB6B" underline="false" strikethrough="true" />
+    <typeParameter color="#FFCB6B" />
+    <constant color="#F78C6C" bold="false" underline="false" strikethrough="false" />
+    <background color="#1E1E1E" />
+    <currentLine color="#3C3C3C" />
+    <foreground color="#FFFFFF" />
+    <lineNumber color="#9F9FA0" />
+    <selectionBackground color="#1B6291" />
+    <selectionForeground color="#FFFFFF" />
+</colorTheme>

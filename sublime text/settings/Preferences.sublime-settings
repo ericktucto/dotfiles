@@ -1,0 +1,43 @@
+{
+	"always_show_minimap_viewport": true,
+	"caret_extra_bottom": 3,
+	"caret_extra_top": 3,
+	"caret_extra_width": 2,
+	"caret_style": "solid",
+	"color_scheme": "Packages/Scheme-Stix/Stix.tmTheme",
+	"default_line_ending": "unix",
+	"draw_minimap_border": true,
+	"draw_white_space": true,
+	"fade_fold_buttons": false,
+	"font_face": "Ubuntu Mono",
+	"font_options":
+	[
+		"subpixel_antialias"
+	],
+	"font_size": 13,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"AutoFileName",
+		"Laravel Blade Highlighter",
+		"Markdown Preview",
+		"SublimeLinter-jshint"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"line_padding_bottom": 3,
+	"line_padding_top": 3,
+	"margin": 12,
+	"rulers":
+	[
+		80,
+		120
+	],
+	"skin": "User/Project Laravel",
+	"tab_size": 4,
+	"theme": "Stix - Project_Laravel.sublime-theme",
+	"word_wrap": false
+}
