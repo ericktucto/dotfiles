@@ -1,0 +1,46 @@
+# General Settings
+$XONSH_SHOW_TRACEBACK = True
+$XONSH_TRACEBACK_LOGFILE = $HOME/.xonsh/errors.log
+$TITLE = '{hostname}'
+
+# Load xontrib plugins
+xontrib load add_variable
+xontrib load vox
+
+# PROMPT Settings
+$PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {NO_COLOR}🔥 '
+$RIGHT_PROMPT = '{BOLD_#A0FF4C}{timeNow}'
+$BOTTOM_TOOLBAR ='{BOLD_#A0FF4C}{user}{NO_COLOR} on {BOLD_#D6A6FF}{cwd}'
+$PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
+$MULTILINE_PROMPT = '`*·.·*`'
+
+# Backup Colors
+# CYAN      #66CCCC
+# GREEN     #A0FF4C
+# RED       #FF4433
+# PURPLE    #D6A6FF
+
+# Adding to $PATH
+"""
+$PATH.append('/opt/blender-2.79b')
+$PATH.append('/opt/android-studio/bin')
+$PATH.append('/opt/SoundWireServer')
+$PATH.append('/opt/node8/bin')
+$PATH.append('/home/erick/.config/composer/vendor/bin')
+$PATH.append('/opt/Keep')
+$PATH.append('/home/erick/.npm-global/bin')
+"""
+
+# Enviroment Variables
+$BASE16_SHELL = $HOME + "/.config/base16-shell/"
+
+# Functions
+def e(cmd):
+    return cmd.strip('\n') if type(cmd) is str else cmd
+
+
+def l(cmd):
+    return cmd.split("\n")[:-1] if type(cmd) is str else cmd
+
+if ($(ls ~/.base16_theme) != ''):
+    bash $HOME/.base16_theme
