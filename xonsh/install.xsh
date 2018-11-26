@@ -4,8 +4,8 @@ from os.path import realpath, dirname
 me = dirname(realpath(__file__))
 
 # Make file and directories
-ln -s @(me)/xonsh $HOME/.xonsh
-ln -s @(me)/xonshrc $HOME/.xonshrc
+cp -R @(me)/xonsh $HOME/.xonsh
+cp @(me)/xonshrc $HOME/.xonshrc
 
 # Install plugins xontrib
 xpip install xontrib-add-variable
