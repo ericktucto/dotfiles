@@ -1,0 +1,49 @@
+" VIM-PLUG
+if empty(glob("~/.vim/autoload/plug.vim"))
+    silent !curl -fLso ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+end
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'chriskempsoatlas/base16-vim'
+Plug 'RRethy/vim-illuminate'
+
+call plug#end()
+
+set termguicolors
+colorscheme base16-atlas
+
+" Eliminar la compatibilidad con vi
+set nocompatible
+set history=1000
+set noswapfile
+set nobackup
+
+" Identado
+set autoindent
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+
+" Otras modificaciones para archivos
+set encoding=utf-8
+set backspace=indent,eol,start
+set hidden
+
+syntax on
+set colorcolumn=80
+
+" Ajustes en archivos
+autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=python
+autocmd FileType gitcommit set cc=72
+
+" Seteo General
+set number
+set relativenumber
+set nowrap
+set showmatch
+set listchars=trail:·
+set list
+set eol
+

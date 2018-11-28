@@ -35,7 +35,7 @@ $PATH.append('/home/erick/.npm-global/bin')
 $BASE16_SHELL = $HOME + "/.config/base16-shell/"
 
 # Functions
-def e(cmd):
+def s(cmd):
     return cmd.strip('\n') if type(cmd) is str else cmd
 
 
