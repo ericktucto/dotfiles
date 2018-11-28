@@ -6,8 +6,9 @@ end
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'chriskempsoatlas/base16-vim'
+Plug 'chriskempson/base16-vim'
 Plug 'RRethy/vim-illuminate'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -47,3 +48,11 @@ set listchars=trail:·
 set list
 set eol
 
+" NerdTree
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+
+" ###########
+" # Mapping #
+" ###########
+map <C-n> :NERDTreeToggle<CR>
