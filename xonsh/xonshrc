@@ -9,7 +9,7 @@ xontrib load vox
 
 # PROMPT Settings
 $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {NO_COLOR}🔥 '
-$RIGHT_PROMPT = '{BOLD_#A0FF4C}{timeNow}'
+$RIGHT_PROMPT = (lambda : '' if 'TMUX' in ${...} else '{BOLD_#A0FF4C}{timeNow}')()
 $BOTTOM_TOOLBAR ='{BOLD_#A0FF4C}{user}{NO_COLOR} on {BOLD_#D6A6FF}{cwd}'
 $PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
 $MULTILINE_PROMPT = '`*·.·*`'
