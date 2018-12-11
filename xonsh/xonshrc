@@ -44,3 +44,4 @@ def l(cmd):
 
 if ($(ls ~/.base16_theme) != ''):
     bash $HOME/.base16_theme
+    $BASE16_THEME = s($(basename $(realpath ~/.base16_theme)))[7:][:-3]
