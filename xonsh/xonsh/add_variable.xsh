@@ -3,8 +3,12 @@ from time import strftime
 from os.path import isfile
 
 
-def e(cmd):
+def s(cmd):
     return cmd.strip('\n') if type(cmd) is str else cmd
+
+
+def l(cmd):
+    return cmd.split("\n")[:-1] if type(cmd) is str else cmd
 
 
 @variable
@@ -13,31 +17,57 @@ def timeNow():
 
 
 @alias
-def base16(arg):
-    # Declaracion de varibles
-    if not arg:
-        return 'No eligiste ningun tema o tipe list para listar los temas'
-    theme = arg[0]
-    if (theme == 'list'):
-        themes = [ t[7:-3] for t in e($(ls -1 $BASE16_SHELL/scripts)).split('\n') ]
-        # themes = [ t[7:-3] for t in $(ls -1 $BASE16_SHELL/scripts).split('\n')[:-1]]
-        return '\n'.join(themes)
-    script = $BASE16_SHELL + "scripts/base16-" + theme + ".sh"
-
-    # Verificar que el script del tema exista, no olvidar mensaje de error
-    if (isfile(script)):
-        @(['bash', script])
-        ln -fs @(script) ~/.base16_theme
-        $BASE16_THEME = theme
-        echo -e @(f"if !exists('g:colors_name') || g:colors_name != 'base16-{theme}'\n  colorscheme base16-{theme}\nendif") > ~/.vimrc_background
-        return True
-    else:
-        print("No existe el tema.")
-        return False
-    # Terminar con los Hooks
+def art(arg):
+    @(['php', 'artisan'] + arg)
 
 
-def lorem(arg):
-    texto = arg[0] * int(arg[1])
+@alias
+def homestead(args):
+    _back = ['cd', $PWD]
+    commands = ['vagrant'] + args
+
+    cd ~/Homestead
+    @(commands)
+    @(_back)
+
+
+@alias
+def t(args):
+    $[./vendor/bin/phpunit @(args)]
+
+
+@alias
+def pp(arg):
+    texto = arg[0]
     $[echo @(texto) | xclip -selection clipboard]
 
+
+@alias
+def pipun(args):
+    package = args[0]
+    $[xpip uninstall -y @(package)]
+
+
+@alias
+def pipin(args):
+    pack = args[0]
+    $[xpip install dist/@(pack)]
+
+
+@alias
+def setupinit():
+    $[python3 setup.py sdist]
+
+
+@alias
+def csvreset():
+    $[pipun csv2seed]
+    $[setupinit]
+    $[pipin csv2seed-0.1.0.tar.gz]
+
+
+@alias
+def bshellreset():
+    $[pipun xontrib-base16-shell]
+    $[setupinit]
+    $[pipin xontrib-base16-shell-0.1.1.tar.gz]
