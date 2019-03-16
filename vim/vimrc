@@ -9,11 +9,21 @@ call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'scrooloose/nerdtree'
+Plug 'posva/vim-vue'
+Plug 'ap/vim-buftabline'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tweekmonster/braceless.vim'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'Yggdroot/indentLine'
+Plug 'raimondi/delimitmate'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
 set termguicolors
 colorscheme base16-atlas
+set t_Co=256
+set background=dark
 
 " Eliminar la compatibilidad con vi
 set nocompatible
@@ -26,33 +36,68 @@ set autoindent
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 
 " Otras modificaciones para archivos
 set encoding=utf-8
 set backspace=indent,eol,start
 set hidden
 
-syntax on
+syntax enable
 set colorcolumn=80
 
 " Ajustes en archivos
 autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=python
 autocmd FileType gitcommit set cc=72
+autocmd FileType php,js,vue,html,py,json BracelessEnable +highlight
 
 " Seteo General
 set number
+set mouse=a
 set relativenumber
 set nowrap
 set showmatch
-set listchars=trail:·
+set listchars=trail:·,eol:<,nbsp:%,tab:\ \ 
 set list
 set eol
+let g:minimap_highlight='Visual'
+let mapleader=","
 
 " NerdTree
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" CtrlP
+let g:ctrlp_map = '<Leader>,'
 
 " ###########
 " # Mapping #
 " ###########
-map <C-n> :NERDTreeToggle<CR>
+
+" # NerdTree
+map <C-X> :NERDTreeToggle<CR>
+
+" # Buffer -> Tabs
+ map <C-n>       :bnext<CR>
+imap <C-n> <Esc> :bnext<CR>i
+ map <C-p>       :bprev<CR>
+imap <C-p>       :bprev<CR>i
+
+" # Update Vim
+ map <silent> <Leader>s      :updat<CR>
+vmap <silent> <Leader>s <C-C>:updat<CR>
+imap <silent> <Leader>s <C-O>:updat<CR>
+ map          <Leader>q      :bdele<CR>
+imap <silent> <Leader>q <C-O>:bdele<CR>
