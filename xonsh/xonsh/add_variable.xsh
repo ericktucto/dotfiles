@@ -3,6 +3,10 @@ from time import strftime
 from os.path import isfile
 
 
+def beep():
+    echo -e '\a'
+
+
 def s(cmd):
     return cmd.strip('\n') if type(cmd) is str else cmd
 
@@ -44,19 +48,25 @@ def pp(arg):
 
 @alias
 def pipun(args):
-    package = args[0]
+    package = args[0] # name package
     $[xpip uninstall -y @(package)]
 
 
 @alias
 def pipin(args):
-    pack = args[0]
+    pack = args[0] # {name_package}-{x.x.x}.tar.gz
     $[xpip install dist/@(pack)]
 
 
 @alias
+def rgnome():
+    $(gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell --method org.gnome.Shell.Eval 'Main.loadTheme();')
+
+
+@alias
 def setupinit():
-    $[python3 setup.py sdist]
+    python = 'python3'
+    $[@(python) setup.py sdist]
 
 
 @alias
