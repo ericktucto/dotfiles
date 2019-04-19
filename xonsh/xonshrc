@@ -1,6 +1,9 @@
 # General Settings
 $XONSH_SHOW_TRACEBACK = True
-$XONSH_TRACEBACK_LOGFILE = $HOME/.xonsh/errors.log
+$XONSH_TRACEBACK_LOGFILE = '.xonsh/errors.log'
+
+# Enviroment Variables
+$BASE16_SHELL = $HOME + "/.config/base16-shell/"
 
 # Load xontrib plugins
 xontrib load add_variable
@@ -21,17 +24,12 @@ $MULTILINE_PROMPT = '`*·.·*`'
 
 # Adding to $PATH
 """
-$PATH.append('/opt/blender-2.79b')
+$PATH.append('/opt/blender')
 $PATH.append('/opt/android-studio/bin')
-$PATH.append('/opt/SoundWireServer')
-$PATH.append('/opt/node8/bin')
+$PATH.append('/opt/node/bin')
 $PATH.append('/home/erick/.config/composer/vendor/bin')
-$PATH.append('/opt/Keep')
 $PATH.append('/home/erick/.npm-global/bin')
 """
-
-# Enviroment Variables
-$BASE16_SHELL = $HOME + "/.config/base16-shell/"
 
 
 # Functions
