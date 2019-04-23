@@ -64,6 +64,11 @@ def rgnome():
 
 
 @alias
+def dgnome():
+    $(env DISPLAY=:0 gnome-shell -r &)
+
+
+@alias
 def setupinit():
     python = 'python3'
     $[@(python) setup.py sdist]
