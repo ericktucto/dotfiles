@@ -1,7 +1,8 @@
 from xontrib.add_variable.decorators import variable, alias
 from time import strftime
 from os.path import isfile
-
+from string import ascii_lowercase, ascii_uppercase, digits
+from random import SystemRandom
 
 def beep():
     echo -e '\a'
@@ -15,6 +16,16 @@ def l(cmd):
     return cmd.split("\n")[:-1] if type(cmd) is str else cmd
 
 
+@alias
+def pgen(args):
+    N = int(args[0])
+    print(''.join(
+        SystemRandom()
+            .choice(ascii_uppercase + digits + ascii_lowercase)
+            for _ in range(N)
+        )
+    )
+
 @variable
 def timeNow():
     return strftime('%H:%M')
@@ -24,6 +35,10 @@ def timeNow():
 def art(arg):
     @(['php', 'artisan'] + arg)
 
+
+@alias
+def egit(args):
+    @(['env', 'LANG="en"', 'git'] + args)
 
 @alias
 def homestead(args):
