@@ -1,8 +1,12 @@
-from xontrib.add_variable.decorators import variable, alias
-from time import strftime
+from aliases.cli import *
+from aliases.generators import *
+from aliases.gnome import *
+from aliases.php import *
+from aliases.python import *
+from aliases.system import *
 from os.path import isfile
-from string import ascii_lowercase, ascii_uppercase, digits
-from random import SystemRandom
+from time import strftime
+from xontrib.add_variable.decorators import variable, alias
 
 def beep():
     echo -e '\a'
@@ -17,76 +21,18 @@ def l(cmd):
 
 
 @alias
-def pgen(args):
-    N = int(args[0])
-    print(''.join(
-        SystemRandom()
-            .choice(ascii_uppercase + digits + ascii_lowercase)
-            for _ in range(N)
-        )
-    )
+def rm(args):
+    @(['trash'] + args)
+
+
+@alias
+def aramark(args):
+    @(['php', 'artisan'] + args)
+
 
 @variable
 def timeNow():
     return strftime('%H:%M')
-
-
-@alias
-def art(arg):
-    @(['php', 'artisan'] + arg)
-
-
-@alias
-def egit(args):
-    @(['env', 'LANG="en"', 'git'] + args)
-
-@alias
-def homestead(args):
-    _back = ['cd', $PWD]
-    commands = ['vagrant'] + args
-
-    cd ~/Homestead
-    @(commands)
-    @(_back)
-
-
-@alias
-def t(args):
-    $[./vendor/bin/phpunit @(args)]
-
-
-@alias
-def pp(arg):
-    texto = arg[0]
-    $[echo @(texto) | xclip -selection clipboard]
-
-
-@alias
-def pipun(args):
-    package = args[0] # name package
-    $[xpip uninstall -y @(package)]
-
-
-@alias
-def pipin(args):
-    pack = args[0] # {name_package}-{x.x.x}.tar.gz
-    $[xpip install dist/@(pack)]
-
-
-@alias
-def rgnome():
-    $(gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell --method org.gnome.Shell.Eval 'Main.loadTheme();')
-
-
-@alias
-def dgnome():
-    $(env DISPLAY=:0 gnome-shell -r &)
-
-
-@alias
-def setupinit():
-    python = 'python3'
-    $[@(python) setup.py sdist]
 
 
 @alias

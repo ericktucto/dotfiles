@@ -1,9 +1,9 @@
 # General Settings
 $XONSH_SHOW_TRACEBACK = True
-$XONSH_TRACEBACK_LOGFILE = '.xonsh/errors.log'
+$XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
 
 # Enviroment Variables
-$BASE16_SHELL = $HOME + "/.config/base16-shell/"
+$BASE16_SHELL = f"{$HOME}/.config/base16-shell/"
 
 # Load xontrib plugins
 xontrib load add_variable
