@@ -6,10 +6,7 @@ def dev(args):
     if env in ["php7.4", "php7.3"]:
         php(args)
     elif env in ["nginx", "docker"]:
-        if env == "nginx":
-            nginx(args[1:])
-        elif env == "docker":
-            docker(args[1:])
+        globals()[env](args[1:])
     else:
         print("No existe el entorno.")
 
