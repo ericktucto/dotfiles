@@ -1,4 +1,8 @@
+#########
+# XONSH #
+#########
 /xonsh/xonsh/errors.log
+/xonsh/xonsh/personal.xsh
 
 ##########
 # PYTHON #

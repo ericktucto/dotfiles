@@ -25,11 +25,6 @@ def rm(args):
     @(['trash'] + args)
 
 
-@alias
-def aramark(args):
-    @(['php', 'artisan'] + args)
-
-
 @variable
 def timeNow():
     return strftime('%H:%M')

@@ -1,41 +1,20 @@
-# General Settings
+# GENERAL SETTINGS
 $XONSH_SHOW_TRACEBACK = True
 $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
 
-# Enviroment Variables
+# ENVIRONMENT VARIABLES
 $BASE16_SHELL = f"{$HOME}/.config/base16-shell/"
+$JAVA_HOME = "/opt/java"
 
-# Load xontrib plugins
+# LOAD XONTRIB PLUGINS
 xontrib load add_variable
 xontrib load base16_shell
 
-# PROMPT Settings
-$PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {NO_COLOR}🔥 '
-$RIGHT_PROMPT = '{BOLD_#A0FF4C}{timeNow}'
-$BOTTOM_TOOLBAR = '{BOLD_#A0FF4C}{user}{NO_COLOR} on {BOLD_#D6A6FF}{cwd}'
-$PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
-$MULTILINE_PROMPT = '`*·.·*`'
+# FUNCTIONS
+s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd
 
-# Backup Colors
-# CYAN      #66CCCC
-# GREEN     #A0FF4C
-# RED       #FF4433
-# PURPLE    #D6A6FF
+l = lambda cmd : cmd.split('\n')[:-1] if type(cmd) is str else cmd
 
-# Adding to $PATH
-"""
-$PATH.append('/opt/blender')
-$PATH.append('/opt/android-studio/bin')
-$PATH.append('/opt/node/bin')
-$PATH.append('/home/erick/.config/composer/vendor/bin')
-$PATH.append('/home/erick/.npm-global/bin')
-"""
-
-
-# Functions
-def s(cmd):
-    return cmd.strip('\n') if type(cmd) is str else cmd
-
-
-def l(cmd):
-    return cmd.split("\n")[:-1] if type(cmd) is str else cmd
+# LOAD CUSTOM SETTINGS
+if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
+    source $HOME/.xonsh/personal.xsh
