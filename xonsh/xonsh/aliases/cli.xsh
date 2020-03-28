@@ -125,11 +125,16 @@ def video(args):
     from datetime import datetime
     from os.path import split, splitext
 
-    getOpcion = lambda opcion: args[args.index(opcion) + 1]
+    getOpcion = lambda opcion, espacio=1: args[args.index(opcion) + espacio]
 
     if len(args) == 0 or "-h" in args:
         return VIDEO_HELP
 
+    if "-show" in args:
+        archivo = getOpcion("-show")
+        patron = getOpcion("-show", 2)
+        mediainfo @(archivo) --Output=JSON | jq @(patron) -r
+        return
     if "-i" not in args:
         return "No especificaste el video."
 
@@ -164,7 +169,7 @@ def video(args):
         for index in range(len(pasos)):
             inicio = pasos[index]
             fin = str(timedelta(seconds=duracion)) if inicio == pasos[-1] else pasos[index + 1]
-            fragmento = "%s_%d%s" % (nombre, index, extension)
+            fragmento = "%s_%d%s" % (nombre, index, ".mp4")
             # DIVIDIR VIDEO
             $(ffmpeg -i @(archivo) -ss @(inicio) -to @(fin) -f mp4 -c:a aac -c:v libx264 -preset ultrafast -profile:v main -strict -2 @(fragmento))
             # LLENAR BARRA DE PROGRESO
