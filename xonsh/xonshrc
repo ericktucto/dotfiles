@@ -10,6 +10,8 @@ $JAVA_HOME = "/opt/java"
 xontrib load add_variable
 xontrib load base16_shell
 
+$TITLE = 'Terminal'
+
 # FUNCTIONS
 s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd
 
@@ -18,3 +20,17 @@ l = lambda cmd : cmd.split('\n')[:-1] if type(cmd) is str else cmd
 # LOAD CUSTOM SETTINGS
 if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
     source $HOME/.xonsh/personal.xsh
+
+# MIS VARIABLES DE ENTORNO
+$TERM="xterm-256color"
+$PATH.append(f"{$HOME}/.cargo/bin")
+$PATH.append('/opt/blender')
+$PATH.append('/opt/node/bin')
+$PATH.append(f"{$JAVA_HOME}/bin")
+$PATH.append('~/.yarn/bin')
+$PATH.append('~/.config/composer/vendor/bin')
+$PATH.append('~/.npm-global/bin')
+
+chprompt profile default
+if 'TMUX' not in ${...}:
+    tmux
