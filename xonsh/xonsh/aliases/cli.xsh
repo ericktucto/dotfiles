@@ -50,7 +50,37 @@ Divisor de videos.
 
 @alias
 def dev(args):
+    def l(cmd):
+        return cmd.split("\n")[:-1] if type(cmd) is str else cmd
+
     env = args[0]
+    if env in ['search']:
+        if args[1] == "-f":
+            buscar = args[2]
+            if not buscar:
+                return "No ingresaste nada."
+            print(f"Buscando: {buscar}")
+            files = l($(find . -type f | egrep -v ".git|node_modules" | grep -i @(buscar)))
+            if len(files) == 0:
+                return "No hay resultados.\nBusqueda terminda."
+            from colorama import Fore
+            from re import search, IGNORECASE
+            resultado = []
+            for stringSearch in files:
+                objMath = search(buscar, stringSearch, flags=IGNORECASE)
+                inicio = stringSearch[:objMath.start()]
+                medio = stringSearch[objMath.start():objMath.end()]
+                fin = stringSearch[objMath.end():]
+                resultado.append(f"{inicio}{Fore.BLUE}{medio}{Fore.RESET}{fin}")
+            print("\n".join(resultado))
+            return "Busqueda terminada"
+        buscar = args[1]
+        directorios = ['app', 'resources/views']
+        print(buscar)
+        for directorio in directorios:
+            grep -Rin @(buscar) @(directorio)
+            #grep -Ril @(buscar) @(directorio)
+        return "Busqueda terminada"
     if env in ["php7.4", "php7.3"]:
         php(args)
     elif env in ["nginx", "docker"]:

@@ -2,7 +2,7 @@
 # XONSH #
 #########
 /xonsh/xonsh/errors.log
-/xonsh/xonsh/personal.xsh
+/xonsh/xonsh/personal/
 
 ##########
 # PYTHON #
