@@ -1,5 +1,32 @@
 from xontrib.add_variable.decorators import alias
 
+DEV_HELP = """dev version 20.06.1 - por Erick Tucto
+
+CLI trabaja con el entorno de desarrollo, hace busca quedas, levanta servicios,
+etc.
+
+ORDENES
+  search
+    Se encarga de buscar archivos o palabras tus proyectos.
+
+ENTORNOS
+  [php7.4|php7.3|mysql|nginx] <accion>
+    Estos son entornos(por ahora solo trabajos con solos servicios) que la cli
+    trabaja.
+
+OPCIONES
+  -v, -version, --version
+    Verificar version de la cli.
+
+{MUY PRONTO}
+OPCIONES
+  -a, -ayuda, --ayuda
+    Nuestra la ayuda para alguna orden o entorno.
+    Ejemplos:
+      # dev php7.4 --ayuda
+      # dev search -a
+"""
+
 PHP_HELP = """dev %s [ACCIÓN]
 
 Este es el entorno de PHP.
@@ -8,6 +35,16 @@ Este es el entorno de PHP.
   restart  Reiniciar el entorno PHP.
   start    Iniciar el entorno PHP.
   stop     Detener el entorno PHP.
+"""
+
+MYSQL_HELP = """dev mysql [OPCIÓN]
+
+Este es el entorno de MYSQL.
+
+[OPCIÓN]
+  restart  Reiniciar el entorno de MYSQL.
+  start    Iniciar el entorno de MYSQL.
+  stop     Detener el entorno de MYSQL.
 """
 
 NGINX_HELP = """dev nginx [OPCIÓN]
@@ -50,11 +87,18 @@ Divisor de videos.
 
 @alias
 def dev(args):
-    def l(cmd):
-        return cmd.split("\n")[:-1] if type(cmd) is str else cmd
+    if len(args) == 0:
+        return DEV_HELP
+    if len(args) == 1 and args[0] in ["-v", "-version", "--version"]:
+        return "dev v20.06.1"
+    l = lambda cmd : cmd.split("\n")[:-1] if type(cmd) is str else cmd
+    def traerOpcion(opcion, espacio=1):
+        index = args.index(opcion) + espacio
+        return args[index] if len(args) > index else None
 
     env = args[0]
     if env in ['search']:
+        # PARA BUSCAR POR NOMBRE DE ARCHIVO
         if args[1] == "-f":
             buscar = args[2]
             if not buscar:
@@ -74,8 +118,15 @@ def dev(args):
                 resultado.append(f"{inicio}{Fore.BLUE}{medio}{Fore.RESET}{fin}")
             print("\n".join(resultado))
             return "Busqueda terminada"
-        buscar = args[1]
-        directorios = ['app', 'resources/views']
+
+        # SE AGREGÓ FLAG -o PARA ESPECIFICAR ORACIÓN A BUSCAR, PARA CONTINUAR
+        # CON LA COMPATIBILIDAD DE LA VERSION ANTERIOR POR DEFECTO TOMARÁ EL
+        # SEGUNDO ARGUMENTO PASADO A LA CLI.
+        buscar = args[1] if "-o" not in args else traerOpcion("-o")
+        # SI SE MANDA EL PARAMETRO -d SE TOMA Y CONVIERTE EN LISTA, POR EJEMPLO
+        # app,resources,src => ['app', 'resources', 'src']. SI NO SE DA LA
+        # OPCION, ENTONCES BUSCARÁ DESDE LA RAIZ DEL DIRECTORIO.
+        directorios = ['./'] if "-d" not in args else traerOpcion("-d").split(",")
         print(buscar)
         for directorio in directorios:
             grep -Rin @(buscar) @(directorio)
@@ -83,10 +134,10 @@ def dev(args):
         return "Busqueda terminada"
     if env in ["php7.4", "php7.3"]:
         php(args)
-    elif env in ["nginx", "docker"]:
+    elif env in ["mysql", "nginx", "docker"]:
         globals()[env](args[1:])
     else:
-        print("No existe el entorno.")
+        return DEV_HELP
 
 
 def php(args):
@@ -112,6 +163,19 @@ def nginx(args):
         sudo service nginx @(action)
     elif action in ["status"]:
         service nginx @(action)
+    else:
+        print(f"La opción {action} no existe en el entorno NGINX.")
+
+
+def mysql(args):
+    if len(args) != 1:
+        print(MYSQL_HELP)
+        return
+    action = args[0]
+    if action in ["start", "restart", "stop"]:
+        sudo service mysql @(action)
+    elif action in ["status"]:
+        service mysql @(action)
     else:
         print(f"La opción {action} no existe en el entorno NGINX.")
 
