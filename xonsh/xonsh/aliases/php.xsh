@@ -18,3 +18,9 @@ def homestead(args):
 @alias
 def t(args):
     $[./vendor/bin/phpunit @(args)]
+
+
+@alias
+def tw(args):
+    $[./vendor/bin/phpunit-watcher @(args)]
+
