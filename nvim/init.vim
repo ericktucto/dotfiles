@@ -1,10 +1,11 @@
 call plug#begin(stdpath('data') . '/plugged')
 source $HOME/.config/nvim/plugins.vim
 call plug#end()
+source $HOME/.config/nvim/themes/tomorrow.vim
+source $HOME/.config/nvim/themes/cobalt.vim
 
 " TEMA
-colo seoul256
-set background=dark
+colorscheme deus
 
 " GIT CONFIG
 let g:NERDTreeIndicatorMapCustom = {
