@@ -1,11 +1,10 @@
 call plug#begin(stdpath('data') . '/plugged')
 source $HOME/.config/nvim/plugins.vim
 call plug#end()
-source $HOME/.config/nvim/themes/tomorrow.vim
-source $HOME/.config/nvim/themes/cobalt.vim
 
 " TEMA
-colorscheme deus
+colorscheme material
+let g:lightline = { 'colorscheme': 'material_vim' }
 
 " GIT CONFIG
 let g:NERDTreeIndicatorMapCustom = {
@@ -33,11 +32,11 @@ endfunction
 
 " COC PRETTIER
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" COC VETUR
-let g:LanguageClient_serverCommands = {
-  \ 'vue': ['vls']
-  \ }
+function ExecPrettier()
+    Prettier
+    write
+endfunction
+autocmd BufWritePost *.vue call ExecPrettier()
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
@@ -55,8 +54,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_user_command = 'find %s -type f'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-set t_Co=256
 
 " Identado
 set autoindent
@@ -110,4 +107,3 @@ autocmd FileType nerdtree setlocal relativenumber
 
 source $HOME/.config/nvim/mappings.vim
 
-hi Normal guibg=NONE ctermbg=NONE

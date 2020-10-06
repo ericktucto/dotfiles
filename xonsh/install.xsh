@@ -10,8 +10,8 @@ touch @(me)/xonsh/errors.log
 
 # Install plugins xontrib
 xpip install xontrib-add-variable
-xpip install xontrib-base16-shell
+#xpip install xontrib-base16-shell
 
 # Themes
-git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
+#git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
 

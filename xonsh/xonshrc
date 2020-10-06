@@ -1,16 +1,18 @@
+from os.path import isfile
 # GENERAL SETTINGS
 $XONSH_SHOW_TRACEBACK = True
 $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
 
 # ENVIRONMENT VARIABLES
-$BASE16_SHELL = f"{$HOME}/.config/base16-shell/"
-$JAVA_HOME = "/opt/java"
+$TERM = "xterm-color"
+$NVM_DIR="~/.nvm"
+$TITLE = 'Terminal'
+
+# LOAD SOURCES BASH
+source-bash $NVM_DIR/nvm.sh --suppress-skip-message
 
 # LOAD XONTRIB PLUGINS
 xontrib load add_variable
-xontrib load base16_shell
-
-$TITLE = 'Terminal'
 
 # FUNCTIONS
 s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd
@@ -21,16 +23,12 @@ l = lambda cmd : cmd.split('\n')[:-1] if type(cmd) is str else cmd
 if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
     source $HOME/.xonsh/personal.xsh
 
-# MIS VARIABLES DE ENTORNO
-$TERM="xterm-256color"
+# MI PATH
 $PATH.append(f"{$HOME}/.cargo/bin")
 $PATH.append('/opt/blender')
-$PATH.append('/opt/node/bin')
-$PATH.append(f"{$JAVA_HOME}/bin")
 $PATH.append('~/.yarn/bin')
 $PATH.append('~/.config/composer/vendor/bin')
 $PATH.append('~/.npm-global/bin')
 
 chprompt profile default
-if 'TMUX' not in ${...}:
-    tmux
+

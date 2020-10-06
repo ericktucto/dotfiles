@@ -4,5 +4,6 @@ from os.path import realpath, dirname
 me = dirname(realpath(__file__))
 
 # MOVE FILES
-ln -s @(me)/scripts {$HOME}/.scripts
+ln -s @(me)/scripts $HOME/.scripts
+ln -s @(me)/gitconfig $HOME/.gitconfig
 

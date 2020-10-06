@@ -1,0 +1,7 @@
+[user]
+	email = erick.tucto@outlook.com
+	name = Erick Tucto
+[alias]
+	publish = push origin HEAD
+[core]
+	editor = vim
