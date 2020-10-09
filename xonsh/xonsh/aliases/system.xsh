@@ -17,10 +17,11 @@ WIFI_HELP = """wifi [ADAPTER] [OPCIÓN]
 Alias para trabajar con el wifi.
 
 [OPCIÓN]
-  restart  Reiniciar el WIFI.
-  scan     Busca señal WIFI cercana.
-  up       Iniciar el WIFI.
-  down     Detener el WIFI.
+  restart    Reiniciar el WIFI.
+  scan       Busca señal WIFI cercana.
+  connect    Conectar a señal WIFI.
+  up         Iniciar el WIFI.
+  down       Detener el WIFI.
 """
 
 CHPROMPT_HELP = """chprompt [OPCIÓN]
@@ -30,6 +31,16 @@ Alias para trabajar con el wifi.
   default    Cambia el prompt al por defecto
   project    Cambia el prompt al estilo por projecto
 """
+
+
+@alias
+def alarm(args):
+    from playsound import playsound
+    def _alarm():
+        for _ in range(2):
+            playsound("/home/erick/Música/beep1.mp3", True)
+    sleep @(args); _alarm()
+
 
 @alias
 def chprompt(args):
@@ -81,12 +92,18 @@ def touchpad(args):
 
 @alias
 def wifi(args):
-    if len(args) != 2:
+    if len(args) < 2:
         return WIFI_HELP
     adap = args[0]
     option = args[1]
     if option == "scan":
         sudo iw @(adap) scan | grep SSID # TODO Ponerlo mas bonito
+    elif option == "connect":
+        import getpass
+        ssid = args[2]
+        password = getpass.getpass()
+        nmcli dev wifi connect @(ssid) password @(password)
+        return
     elif option in ["down", "up"]:
         sudo ip link set @(adap) @(option)
     elif option == "restart":
