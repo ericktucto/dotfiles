@@ -9,10 +9,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pseewald/vim-anyfold'
 Plug 'preservim/nerdtree'
+Plug 'neoclide/npm.nvim', {'do' : 'npm install'}
 "Plug 'APZelos/blamer.nvim'
 "Plug 'arnaud-lb/vim-php-namespace'
 
 " SOPORTE A OTROS LENGUAJES
+Plug 'jonsmithers/vim-html-template-literals'
+Plug 'pangloss/vim-javascript'
 Plug 'storyn26383/vim-vue'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine'

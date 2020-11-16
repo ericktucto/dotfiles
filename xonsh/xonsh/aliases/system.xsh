@@ -36,10 +36,9 @@ Alias para trabajar con el wifi.
 @alias
 def alarm(args):
     from playsound import playsound
-    def _alarm():
-        for _ in range(2):
-            playsound("/home/erick/Música/beep1.mp3", True)
-    sleep @(args); _alarm()
+    playsound("/home/erick/Música/beep1.mp3", True)
+    sleep @(args);
+    playsound("/home/erick/Música/beep1.mp3", True)
 
 
 @alias
@@ -56,12 +55,12 @@ def chprompt(args):
         $PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
         profile = args[1]
         if profile in ["default"]:
-            $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {NO_COLOR}🔥 '
+            $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RESET}🔥 '
             $RIGHT_PROMPT = ''
             $BOTTOM_TOOLBAR = ' '
             $MULTILINE_PROMPT = '`*·.·*`'
         elif profile in ["tmux"]:
-            $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {NO_COLOR}🔥 '
+            $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RESET}🔥 '
             $RIGHT_PROMPT = ''
             $MULTILINE_PROMPT = '`*·.·*`'
             $BOTTOM_TOOLBAR = ' '

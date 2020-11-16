@@ -5,7 +5,7 @@ $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
 
 # ENVIRONMENT VARIABLES
 $TERM = "xterm-color"
-$NVM_DIR="~/.nvm"
+$NVM_DIR=f"{$HOME}/.nvm"
 $TITLE = 'Terminal'
 
 # LOAD SOURCES BASH
@@ -29,6 +29,7 @@ $PATH.append('/opt/blender')
 $PATH.append('~/.yarn/bin')
 $PATH.append('~/.config/composer/vendor/bin')
 $PATH.append('~/.npm-global/bin')
+$PATH.append('~/.local/bin')
 
 chprompt profile default
 

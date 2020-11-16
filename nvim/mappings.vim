@@ -1,3 +1,5 @@
+" COC
+inoremap <silent><expr> <c-space> coc#refresh()
 " # Control + P
  map <C-p>         :CtrlP<CR>
 imap <C-p> <Esc>   :CtrlP<CR>
