@@ -6,4 +6,6 @@
     back = reset HEAD^
     ecommit = "!~/.scripts/gitecommit.xsh"
 [core]
-    editor = vim
+	editor = vim
+[pull]
+	rebase = false

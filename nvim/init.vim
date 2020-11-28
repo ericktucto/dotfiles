@@ -3,8 +3,8 @@ source $HOME/.config/nvim/plugins.vim
 call plug#end()
 
 " TEMA
-colorscheme material
-let g:lightline = { 'colorscheme': 'material_vim' }
+"colorscheme material
+"let g:lightline = { 'colorscheme': 'material_vim' }
 
 " GIT CONFIG
 let g:NERDTreeIndicatorMapCustom = {
@@ -45,7 +45,7 @@ inoremap <silent><expr> <Tab>
 
 " Set variables to Python
 let g:python3_host_prog='/usr/bin/python3'
-autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=pytho
+autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=python
 
 set shell=/usr/local/bin/xonsh
 let g:ctrlp_map = '<c-p>'
