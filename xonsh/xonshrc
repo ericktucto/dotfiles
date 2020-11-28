@@ -9,10 +9,11 @@ $NVM_DIR=f"{$HOME}/.nvm"
 $TITLE = 'Terminal'
 
 # LOAD SOURCES BASH
-source-bash $NVM_DIR/nvm.sh --suppress-skip-message
+source-bash $NVM_DIR/nvm.sh
 
 # LOAD XONTRIB PLUGINS
 xontrib load add_variable
+xontrib load base16_shell
 
 # FUNCTIONS
 s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd

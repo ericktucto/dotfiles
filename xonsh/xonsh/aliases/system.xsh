@@ -36,9 +36,20 @@ Alias para trabajar con el wifi.
 @alias
 def alarm(args):
     from playsound import playsound
-    playsound("/home/erick/Música/beep1.mp3", True)
-    sleep @(args);
-    playsound("/home/erick/Música/beep1.mp3", True)
+
+    def opcion(nombre):
+        if nombre in args:
+            indice = args.index(nombre) + 1
+            return False if len(args) <= indice else args[indice]
+        return False
+
+    repetir = int(opcion("-r")) if opcion("-r") else 2
+    tiempo = opcion("-t") if opcion("-t") else "0.015s"
+
+    sleep @(tiempo);
+
+    for _ in range(repetir):
+        playsound("/home/erick/Música/beep1.mp3", True)
 
 
 @alias
