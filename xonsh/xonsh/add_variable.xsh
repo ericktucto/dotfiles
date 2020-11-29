@@ -21,7 +21,7 @@ def l(cmd):
 
 
 @alias
-def rm(args):
+def rrm(args):
     @(['trash'] + args)
 
 
