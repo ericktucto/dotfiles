@@ -43,13 +43,14 @@ def alarm(args):
             return False if len(args) <= indice else args[indice]
         return False
 
+    beepPath = f"{$HOME}/Música/beep1.mp3"
     repetir = int(opcion("-r")) if opcion("-r") else 2
     tiempo = opcion("-t") if opcion("-t") else "0.015s"
 
     sleep @(tiempo);
 
     for _ in range(repetir):
-        playsound("/home/erick/Música/beep1.mp3", True)
+        playsound(beepPath, True)
 
 
 @alias
@@ -66,12 +67,12 @@ def chprompt(args):
         $PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
         profile = args[1]
         if profile in ["default"]:
-            $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RESET}🔥 '
+            $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490{RESET} '
             $RIGHT_PROMPT = ''
             $BOTTOM_TOOLBAR = ' '
             $MULTILINE_PROMPT = '`*·.·*`'
         elif profile in ["tmux"]:
-            $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RESET}🔥 '
+            $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490{RESET} '
             $RIGHT_PROMPT = ''
             $MULTILINE_PROMPT = '`*·.·*`'
             $BOTTOM_TOOLBAR = ' '
