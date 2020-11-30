@@ -1,8 +1,8 @@
 " COC
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " MOSTRAR AUTOCOMPLETADO
 if &filetype == "javascript" || &filetype == "python"
@@ -10,6 +10,12 @@ if &filetype == "javascript" || &filetype == "python"
 else
     inoremap <silent><expr> <c-space> coc#refresh()
 endif
+
+" NAVEGACION
+ map <C-i> <C-b>
+imap <C-i> <C-b>
+ map <C-o> <C-f>
+imap <C-o> <C-f>
 
 " # Control + P
  map <C-p>         :CtrlP<CR>
