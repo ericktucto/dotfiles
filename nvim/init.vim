@@ -2,9 +2,58 @@ call plug#begin(stdpath('data') . '/plugged')
 source $HOME/.config/nvim/plugins.vim
 call plug#end()
 
-" TEMA
-"colorscheme material
-"let g:lightline = { 'colorscheme': 'material_vim' }
+""""""""""""""""""
+" AUTOCOMPLETADO "
+""""""""""""""""""
+
+" KITE
+let g:kite_supported_languages = ['javascript', 'python']
+
+"COC | KITE (COMPATIBILIDAD)
+autocmd FileType python let b:coc_suggest_disable = 1
+autocmd FileType javascript let b:coc_suggest_disable = 1
+autocmd FileType scss setl iskeyword+=@-@
+
+" COC NAVEEGAR CON EL TAB
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" COC AUTOPRETTIER
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+function ExecPrettier()
+    Prettier
+    write
+endfunction
+autocmd BufWritePost *.vue call ExecPrettier()
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+let g:lightline = {
+    \   'active' : {
+    \     'left': [['mode', 'paste'], [], ['relativepath', 'modified']],
+    \     'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo']]
+    \   },
+    \   'inactive': {
+    \     'left': [['inactive'], ['relativepath']],
+    \     'right': [['bufnum']]
+    \   },
+    \   'component': {
+    \     'bufnum': '%n',
+    \     'inactive': 'inactive'
+    \   },
+    \   'component-function': {
+    \     'kitestatus': 'kite#statusline'
+    \   },
+    \   'subseparator': {
+    \     'left': '',
+    \     'right': ''
+    \   }
+    \ }
 
 " GIT CONFIG
 let g:NERDTreeIndicatorMapCustom = {
@@ -23,25 +72,6 @@ let g:NERDTreeIndicatorMapCustom = {
 "let g:blamer_prefix = " \ue702 "
 "let g:blamer_template = "<commit-short> <committer>, <committer-time> • <summary>"
 "let g:indentLine_bgcolor_gui = '#FF00FF'
-
-" USAR TAB PARA NAVEGAR EN EL AUTOCOMPLETADO
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-" COC PRETTIER
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-function ExecPrettier()
-    Prettier
-    write
-endfunction
-autocmd BufWritePost *.vue call ExecPrettier()
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
 
 " Set variables to Python
 let g:python3_host_prog='/usr/bin/python3'
