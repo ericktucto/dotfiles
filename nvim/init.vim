@@ -6,12 +6,7 @@ call plug#end()
 " AUTOCOMPLETADO "
 """"""""""""""""""
 
-" KITE
-let g:kite_supported_languages = ['javascript', 'python']
-
-"COC | KITE (COMPATIBILIDAD)
-autocmd FileType python let b:coc_suggest_disable = 1
-autocmd FileType javascript let b:coc_suggest_disable = 1
+"COC
 autocmd FileType scss setl iskeyword+=@-@
 
 " COC NAVEEGAR CON EL TAB
@@ -130,6 +125,11 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 let NERDTreeShowLineNumber=1
 autocmd FileType nerdtree setlocal relativenumber
+
+" #####################
+" # SUPPORT LANGUAGES #
+" #####################
+let g:vue_pre_processors = ['pug', 'scss']
 
 " ###########
 " # Mapping #

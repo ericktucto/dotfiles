@@ -12,10 +12,8 @@ else
 endif
 
 " NAVEGACION
- map <C-i> <C-b>
-imap <C-i> <C-b>
- map <C-o> <C-f>
-imap <C-o> <C-f>
+map <C-i> <C-b>
+map <C-o> <C-f>
 
 " # Control + P
  map <C-p>         :CtrlP<CR>

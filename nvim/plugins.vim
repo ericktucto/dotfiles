@@ -16,7 +16,7 @@ Plug 'neoclide/npm.nvim', {'do' : 'npm install'}
 " SOPORTE A OTROS LENGUAJES
 Plug 'jonsmithers/vim-html-template-literals'
 Plug 'pangloss/vim-javascript'
-Plug 'storyn26383/vim-vue'
+Plug 'posva/vim-vue'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine'
 Plug 'raimondi/delimitmate'
