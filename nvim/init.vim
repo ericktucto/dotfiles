@@ -1,10 +1,21 @@
 call plug#begin(stdpath('data') . '/plugged')
 source $HOME/.config/nvim/plugins.vim
+Plug 'sheerun/vim-polyglot'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'srcery-colors/srcery-vim'
 call plug#end()
+"colorscheme PaperColor
+"set background=dark
+colorscheme srcery
 
 """"""""""""""""""
 " AUTOCOMPLETADO "
 """"""""""""""""""
+
+" KITE
+let g:kite_supported_languages = ['javascript', 'php']
+autocmd FileType javascript let b:coc_suggest_disable = 1
+"autocmd FileType php let b:coc_suggest_disable = 1
 
 "COC
 autocmd FileType scss setl iskeyword+=@-@
@@ -30,7 +41,7 @@ inoremap <silent><expr> <Tab>
 
 let g:lightline = {
     \   'active' : {
-    \     'left': [['mode', 'paste'], [], ['relativepath', 'modified']],
+    \     'left': [['mode', 'paste'], ['relativepath'], ['modified']],
     \     'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo']]
     \   },
     \   'inactive': {

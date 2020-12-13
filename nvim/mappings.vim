@@ -5,11 +5,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " MOSTRAR AUTOCOMPLETADO
-if &filetype == "javascript" || &filetype == "python"
-    inoremap <c-space> <C-x><C-u>
-else
-    inoremap <silent><expr> <c-space> coc#refresh()
-endif
+inoremap <C-space> <C-x><C-u>
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " NAVEGACION
 map <C-i> <C-b>

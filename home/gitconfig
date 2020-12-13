@@ -2,9 +2,10 @@
     email = erick.tucto@outlook.com
     name = Erick Tucto
 [alias]
-    publish = push origin HEAD
     back = reset HEAD^
     ecommit = "!~/.scripts/gitecommit.xsh"
+    publish = push origin HEAD
+    update = pull origin HEAD
 [core]
 	editor = vim
 [pull]

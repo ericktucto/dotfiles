@@ -10,6 +10,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'pseewald/vim-anyfold'
 Plug 'preservim/nerdtree'
 Plug 'neoclide/npm.nvim', {'do' : 'npm install'}
+Plug 'terryma/vim-multiple-cursors'
 "Plug 'APZelos/blamer.nvim'
 "Plug 'arnaud-lb/vim-php-namespace'
 
