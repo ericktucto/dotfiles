@@ -3,9 +3,9 @@
     name = Erick Tucto
 [alias]
     back = reset HEAD^
-    ecommit = "!~/.scripts/gitecommit.xsh"
+    ecommit = "!~/.scripts/git.xsh ecommit"
     publish = push origin HEAD
-    update = pull origin HEAD
+    update = "!~/.scripts/git.xsh update"
 [core]
 	editor = vim
 [pull]
