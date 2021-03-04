@@ -11,8 +11,10 @@ Plug 'pseewald/vim-anyfold'
 Plug 'preservim/nerdtree'
 Plug 'neoclide/npm.nvim', {'do' : 'npm install'}
 Plug 'terryma/vim-multiple-cursors'
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/vim-gitbranch'
+Plug 'arnaud-lb/vim-php-namespace'
 "Plug 'APZelos/blamer.nvim'
-"Plug 'arnaud-lb/vim-php-namespace'
 
 " SOPORTE A OTROS LENGUAJES
 Plug 'jonsmithers/vim-html-template-literals'

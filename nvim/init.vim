@@ -17,10 +17,15 @@ let g:kite_supported_languages = ['javascript', 'php']
 autocmd FileType javascript let b:coc_suggest_disable = 1
 "autocmd FileType php let b:coc_suggest_disable = 1
 
-"COC
+" COC
 autocmd FileType scss setl iskeyword+=@-@
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php nmap <silent> gi :call IPhpInsertUse()<CR>
 
-" COC NAVEEGAR CON EL TAB
+" COC NAVEGAR CON EL TAB
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -42,7 +47,7 @@ inoremap <silent><expr> <Tab>
 let g:lightline = {
     \   'active' : {
     \     'left': [['mode', 'paste'], ['relativepath'], ['modified']],
-    \     'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo']]
+    \     'right': [['gitbranch'], ['ggstatus','filetype', 'percent', 'lineinfo'], ['kitestatus']]
     \   },
     \   'inactive': {
     \     'left': [['inactive'], ['relativepath']],
@@ -52,14 +57,23 @@ let g:lightline = {
     \     'bufnum': '%n',
     \     'inactive': 'inactive'
     \   },
-    \   'component-function': {
-    \     'kitestatus': 'kite#statusline'
+    \   'component_function': {
+    \     'kitestatus': 'kite#statusline',
+    \     'gitbranch': 'gitbranch#name',
+    \     'ggstatus': 'GitStatus'
     \   },
     \   'subseparator': {
     \     'left': '',
     \     'right': ''
     \   }
     \ }
+
+" GITGUTTER
+function! GitStatus()
+  let summary = GitGutterGetHunkSummary()
+  let estados = map(['+','~','-'], {k, v -> {'count': summary[k], 'display': printf("%s%d", v, summary[k])}})
+  return join(map(filter(estados, {k,v -> v['count'] > 0}), {k,v -> v['display']}), ' ')
+endfunction
 
 " GIT CONFIG
 let g:NERDTreeIndicatorMapCustom = {
@@ -83,7 +97,7 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:python3_host_prog='/usr/bin/python3'
 autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=python
 
-set shell=/usr/local/bin/xonsh
+set shell=/usr/bin/xonsh
 let g:ctrlp_map = '<c-p>'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 

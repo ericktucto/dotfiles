@@ -45,5 +45,5 @@ configuracion = """server {
 sudo echo @(configuracion) > /etc/nginx/sites-available/@(dominio)
 sudo echo  @(f"127.0.0.1    {dominio}") >> /etc/hosts
 sudo ln -s /etc/nginx/sites-available/@(dominio) /etc/nginx/sites-enabled/@(dominio)
-sudo service nginx restart
+sudo systemctl restart nginx
 

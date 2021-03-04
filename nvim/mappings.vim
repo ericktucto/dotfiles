@@ -18,6 +18,7 @@ imap <C-p> <Esc>   :CtrlP<CR>
 
 " # NerdTree
 map <C-X> :NERDTreeToggle<CR>
+map <Leader>n :NERDTreeFind<CR>
 
 " # Buffer -> Tabs
  map <C-k>       :bnext<CR>
@@ -56,6 +57,9 @@ imap <silent> <Leader>k <C-O>:quit<CR>
  map          <Leader>o      :quit!<CR>
 vmap <silent> <Leader>o <C-C>:quit!<CR>
 imap <silent> <Leader>o <C-O>:quit!<CR>
+
+" SYSTEM
+vmap <Leader>y  "+y
 
 " PHP
 "nnoremap <Leader>i :PHPImportClass<cr>

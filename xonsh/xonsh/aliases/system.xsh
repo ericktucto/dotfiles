@@ -67,12 +67,12 @@ def chprompt(args):
         $PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
         profile = args[1]
         if profile in ["default"]:
-            $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490{RESET} '
+            $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490 '
             $RIGHT_PROMPT = ''
             $BOTTOM_TOOLBAR = ' '
             $MULTILINE_PROMPT = '`*·.·*`'
         elif profile in ["tmux"]:
-            $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490{RESET} '
+            $PROMPT = '{env_name:{} }{BOLD_YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490 '
             $RIGHT_PROMPT = ''
             $MULTILINE_PROMPT = '`*·.·*`'
             $BOTTOM_TOOLBAR = ' '
