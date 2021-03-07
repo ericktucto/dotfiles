@@ -5,7 +5,10 @@ Plug 'eslint/eslint'
 " PRODUCTIVIDAD
 Plug 'amiorin/vim-project'
 Plug 'ap/vim-buftabline'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vista.vim'
+Plug 'preservim/tagbar'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pseewald/vim-anyfold'
 Plug 'preservim/nerdtree'

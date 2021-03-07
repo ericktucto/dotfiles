@@ -12,9 +12,15 @@ inoremap <silent><expr> <c-space> coc#refresh()
 map <C-i> <C-b>
 map <C-o> <C-f>
 
+" CONTROL + P
+ map <C-p>                      :call Searching("git")<CR>
+imap <C-p> <Esc>                :call Searching("git")<CR>
+ map <Leader>p                  :call Searching("buffer")<CR>
+imap <silent> <Leader>p    <C-O>:call Searching("buffer")<CR>
+
 " # Control + P
- map <C-p>         :CtrlP<CR>
-imap <C-p> <Esc>   :CtrlP<CR>
+" map <C-p>         :CtrlP<CR>
+"imap <C-p> <Esc>   :CtrlP<CR>
 
 " # NerdTree
 map <C-X> :NERDTreeToggle<CR>

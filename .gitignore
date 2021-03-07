@@ -1,3 +1,10 @@
+########
+# NVIM #
+########
+/nvim/current
+/nvim/pack/
+
+
 #########
 # XONSH #
 #########

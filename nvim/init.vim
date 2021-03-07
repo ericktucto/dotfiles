@@ -1,17 +1,36 @@
 call plug#begin(stdpath('data') . '/plugged')
 source $HOME/.config/nvim/plugins.vim
 Plug 'sheerun/vim-polyglot'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'srcery-colors/srcery-vim'
 call plug#end()
-"colorscheme PaperColor
-"set background=dark
+set termguicolors
 colorscheme srcery
+set background=dark
+
+"""""""""""""""""""""""""""
+" COMANDOS PERSONALIZADOS "
+"""""""""""""""""""""""""""
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+function Searching(view)
+  let config = {
+  \    'options': ['--layout=reverse', '--preview', 'pygmentize -g -O style=monokai {}'],
+  \    'window': { 'width': 1, 'height': 1 }
+  \  }
+  if a:view == 'git'
+    let source = {
+      \    "source": "xonsh -c 'echo @($(git ls-files --exclude-standard --others) + $(git ls-files))'",
+      \    "sink": "e"
+      \  }
+    call fzf#run(extend(config, source))
+  endif
+  if a:view == 'buffer'
+    call fzf#vim#buffers(config)
+  endif
+endfunction
 
 """"""""""""""""""
 " AUTOCOMPLETADO "
 """"""""""""""""""
-
 " KITE
 let g:kite_supported_languages = ['javascript', 'php']
 autocmd FileType javascript let b:coc_suggest_disable = 1
@@ -31,8 +50,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" COC AUTOPRETTIER
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" COC AUTOPRETTIER EN VUE
 function ExecPrettier()
     Prettier
     write
@@ -44,9 +62,13 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
 let g:lightline = {
     \   'active' : {
-    \     'left': [['mode', 'paste'], ['relativepath'], ['modified']],
+    \     'left': [['mode', 'paste'], ['relativepath'], ['modified', 'method']],
     \     'right': [['gitbranch'], ['ggstatus','filetype', 'percent', 'lineinfo'], ['kitestatus']]
     \   },
     \   'inactive': {
@@ -60,7 +82,8 @@ let g:lightline = {
     \   'component_function': {
     \     'kitestatus': 'kite#statusline',
     \     'gitbranch': 'gitbranch#name',
-    \     'ggstatus': 'GitStatus'
+    \     'ggstatus': 'GitStatus',
+    \     'method': 'NearestMethodOrFunction'
     \   },
     \   'subseparator': {
     \     'left': '',
@@ -98,12 +121,7 @@ let g:python3_host_prog='/usr/bin/python3'
 autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=python
 
 set shell=/usr/bin/xonsh
-let g:ctrlp_map = '<c-p>'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_user_command = 'find %s -type f'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Identado
 set autoindent
