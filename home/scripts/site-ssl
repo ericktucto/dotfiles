@@ -1,0 +1,38 @@
+#!/usr/bin/env xonsh
+from os.path import isdir
+
+def generarSubj(dominio):
+    datos = [
+        'C=BE',
+        'ST=SomeState',
+        'O=SomeCompany',
+        'localityName=SomeCity',
+        f'commonName=*.{dominio}',
+        'organizationalUnitName=HQ',
+        'emailAddress=some@email.com'
+    ]
+    datos = "/".join(datos)
+    return "/%s/" % datos
+
+if (len($ARGS) != 2):
+    print("Debes de ingredar el dominio y la ruta del proyecto\n")
+    print("Ejemplo: site example.test ~/test")
+
+
+dominio = $ARGS[1]
+ssl_dir = "/etc/nginx/ssl"
+subj = generarSubj(dominio)
+
+key_ssl = "%s/%s.key" % (ssl_dir, dominio)
+csr_ssl = "%s/%s.csr" % (ssl_dir, dominio)
+crt_ssl = "%s/%s.crt" % (ssl_dir, dominio)
+
+password = "secret"
+
+if not isdir(ssl_dir):
+    sudo mkdir @(ssl_dir)
+
+sudo openssl genrsa -out @(key_ssl) 2048 >/dev/null
+sudo openssl req -new -subj @(subj) -key @(key_ssl) -out @(csr_ssl) -passin pass:@(password) >/dev/null
+sudo openssl x509 -req -days 365 -in @(csr_ssl) -signkey @(key_ssl) -out @(crt_ssl) >/dev/null
+

@@ -1,5 +1,5 @@
 #!/usr/bin/env xonsh
-from os.path import abspath
+from os.path import abspath, isdir, isfile
 
 if (len($ARGS) != 3):
     print("Debes de ingredar el dominio y la ruta del proyecto\n")
@@ -7,9 +7,49 @@ if (len($ARGS) != 3):
 
 dominio = $ARGS[1]
 proyecto = abspath($ARGS[2])
+ssl_dir = "/etc/nginx/ssl"
+dominio_ssl = "stixcode.test"
+key_ssl = "%s/%s.key" % (ssl_dir, dominio_ssl)
+csr_ssl = "%s/%s.csr" % (ssl_dir, dominio_ssl)
+crt_ssl = "%s/%s.crt" % (ssl_dir, dominio_ssl)
+
+if not isdir(ssl_dir):
+    sudo mkdir @(ssl_dir)
+
+
+def generarSubj():
+    datos = [
+        'C=BE',
+        'ST=SomeState',
+        'O=SomeCompany',
+        'localityName=SomeCity',
+        f'commonName=*.stixcode.test',
+        'organizationalUnitName=HQ',
+        'emailAddress=some@email.com'
+    ]
+    datos = "/".join(datos)
+    return "/%s/" % datos
+
+def generarSSL():
+    subj = generarSubj()
+    password = "secret"
+    sudo openssl genrsa -out @(key_ssl) 2048 >/dev/null
+    sudo openssl req -new -subj @(subj) -key @(key_ssl) -out @(csr_ssl) -passin pass:@(password) >/dev/null
+    sudo openssl x509 -req -days 365 -in @(csr_ssl) -signkey @(key_ssl) -out @(crt_ssl) >/dev/null
+
+if not isfile(ssl_dir + "/stixcode.test.key"):
+    generarSSL()
 
 configuracion = """server {
     listen 80;
+    server_name :dominio www.:dominio;
+    return 301 https://:dominio$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    ssl_certificate :crt_ssl;
+    ssl_certificate_key :key_ssl;
     server_name :dominio;
     root :proyecto;
 
@@ -40,7 +80,7 @@ configuracion = """server {
         deny all;
     }
 }
-""".replace(":dominio", dominio).replace(":proyecto", proyecto)
+""".replace(":dominio", dominio).replace(":proyecto", proyecto).replace(":crt_ssl", crt_ssl).replace(":key_ssl", key_ssl)
 
 sudo echo @(configuracion) > /etc/nginx/sites-available/@(dominio)
 sudo echo  @(f"127.0.0.1    {dominio}") >> /etc/hosts
