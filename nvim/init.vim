@@ -31,11 +31,7 @@ endfunction
 """"""""""""""""""
 " AUTOCOMPLETADO "
 """"""""""""""""""
-" KITE
-let g:kite_supported_languages = ['javascript', 'php']
-autocmd FileType javascript let b:coc_suggest_disable = 1
-"autocmd FileType php let b:coc_suggest_disable = 1
-
+let g:kite_completions=0
 " COC
 autocmd FileType scss setl iskeyword+=@-@
 function! IPhpInsertUse()
@@ -69,7 +65,7 @@ endfunction
 let g:lightline = {
     \   'active' : {
     \     'left': [['mode', 'paste'], ['relativepath'], ['modified', 'method']],
-    \     'right': [['gitbranch'], ['ggstatus','filetype', 'percent', 'lineinfo'], ['kitestatus']]
+    \     'right': [['gitbranch'], ['ggstatus','filetype', 'percent', 'lineinfo']]
     \   },
     \   'inactive': {
     \     'left': [['inactive'], ['relativepath']],
@@ -80,7 +76,6 @@ let g:lightline = {
     \     'inactive': 'inactive'
     \   },
     \   'component_function': {
-    \     'kitestatus': 'kite#statusline',
     \     'gitbranch': 'gitbranch#name',
     \     'ggstatus': 'GitStatus',
     \     'method': 'NearestMethodOrFunction'
@@ -99,22 +94,8 @@ function! GitStatus()
 endfunction
 
 " GIT CONFIG
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-"let g:blamer_enabled = 1
-"let g:blamer_prefix = " \ue702 "
-"let g:blamer_template = "<commit-short> <committer>, <committer-time> • <summary>"
-"let g:indentLine_bgcolor_gui = '#FF00FF'
+let g:blamer_prefix = " \ue702 "
+let g:blamer_template = "<commit-short> <committer>, <committer-time> • <summary>"
 
 " Set variables to Python
 let g:python3_host_prog='/usr/bin/python3'

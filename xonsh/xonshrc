@@ -3,6 +3,17 @@ from os.path import isfile
 $XONSH_SHOW_TRACEBACK = True
 $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
 
+# MI PATH
+$PATH.append(f"{$HOME}/.cargo/bin")
+$PATH.append('/opt/blender')
+$PATH.append('/opt/ngrok')
+$PATH.append('/opt/vagrant')
+$PATH.append('~/.yarn/bin')
+$PATH.append('~/.config/composer/vendor/bin')
+$PATH.append('~/.npm-global/bin')
+$PATH.append('~/.local/bin')
+$PATH.append(f"{$HOME}/Tools/azuredatastudio")
+
 # ENVIRONMENT VARIABLES
 $TERM = "xterm-color"
 $NVM_DIR=f"{$HOME}/.nvm"
@@ -23,16 +34,6 @@ l = lambda cmd : cmd.split('\n')[:-1] if type(cmd) is str else cmd
 # LOAD CUSTOM SETTINGS
 if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
     source $HOME/.xonsh/personal.xsh
-
-# MI PATH
-$PATH.append(f"{$HOME}/.cargo/bin")
-$PATH.append('/opt/blender')
-$PATH.append('/opt/ngrok')
-$PATH.append('/opt/vagrant')
-$PATH.append('~/.yarn/bin')
-$PATH.append('~/.config/composer/vendor/bin')
-$PATH.append('~/.npm-global/bin')
-$PATH.append('~/.local/bin')
 
 chprompt profile default
 

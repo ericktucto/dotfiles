@@ -1,3 +1,5 @@
+tnoremap <C-n> <C-\><C-n>
+
 " COC
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -18,9 +20,8 @@ imap <C-p> <Esc>                :call Searching("git")<CR>
  map <Leader>p                  :call Searching("buffer")<CR>
 imap <silent> <Leader>p    <C-O>:call Searching("buffer")<CR>
 
-" # Control + P
-" map <C-p>         :CtrlP<CR>
-"imap <C-p> <Esc>   :CtrlP<CR>
+" # Blamer
+map <Leader>m :BlamerToggle<CR>
 
 " # NerdTree
 map <C-X> :NERDTreeToggle<CR>
@@ -67,5 +68,7 @@ imap <silent> <Leader>o <C-O>:quit!<CR>
 " SYSTEM
 vmap <Leader>y  "+y
 
-" PHP
-"nnoremap <Leader>i :PHPImportClass<cr>
+" PRETTIER
+ map <Leader>r :Prettier<CR>
+vmap <Leader>r :Prettier<CR>
+imap <Leader>r :Prettier<CR>
