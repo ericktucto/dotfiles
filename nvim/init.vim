@@ -47,11 +47,11 @@ function! s:check_back_space() abort
 endfunction
 
 " COC AUTOPRETTIER EN VUE
-function ExecPrettier()
-    Prettier
-    write
-endfunction
-autocmd BufWritePost *.vue call ExecPrettier()
+"function ExecPrettier()
+"    Prettier
+"   write
+"endfunction
+"autocmd BufWritePost *.vue call ExecPrettier()
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
