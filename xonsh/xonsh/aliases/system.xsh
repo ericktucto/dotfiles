@@ -64,7 +64,7 @@ def chprompt(args):
         if len(args) != 2 or args[1] not in profiles:
             return "Elegir entre los siguiente perfiles %s" % (", ".join(profiles))
 
-        $PTK_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
+        $XONSH_STYLE_OVERRIDES['bottom-toolbar'] = 'noreverse'
         profile = args[1]
         if profile in ["default"]:
             $PROMPT = '{env_name:{} }{YELLOW}{cwd_base}{branch_color}{curr_branch: [{}]} {RED}\uf490 '

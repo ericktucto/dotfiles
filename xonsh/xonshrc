@@ -1,10 +1,11 @@
 from os.path import isfile
 # GENERAL SETTINGS
+$BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
 $XONSH_SHOW_TRACEBACK = True
 $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
 
 # MI PATH
-$PATH.append(f"{$HOME}/.cargo/bin")
+$PATH.append(f"{$HOME}/.cargo/env")
 $PATH.append('/opt/blender')
 $PATH.append('/opt/ngrok')
 $PATH.append('/opt/vagrant')
