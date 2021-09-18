@@ -1,10 +1,14 @@
+" BASICOS
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'kyazdani42/nvim-web-devicons'
+
 " IDE
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'eslint/eslint'
 
 " PRODUCTIVIDAD
 Plug 'amiorin/vim-project'
-Plug 'ap/vim-buftabline'
+Plug 'romgrk/barbar.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vista.vim'

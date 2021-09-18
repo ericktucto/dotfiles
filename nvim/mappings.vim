@@ -15,10 +15,8 @@ map <C-i> <C-b>
 map <C-o> <C-f>
 
 " CONTROL + P
- map <C-p>                      :call Searching("git")<CR>
-imap <C-p> <Esc>                :call Searching("git")<CR>
- map <Leader>p                  :call Searching("buffer")<CR>
-imap <silent> <Leader>p    <C-O>:call Searching("buffer")<CR>
+ map <C-p>                      :call Searching()<CR>
+imap <C-p> <Esc>                :call Searching()<CR>
 
 " # Blamer
 map <Leader>m :BlamerToggle<CR>
@@ -28,10 +26,14 @@ map <C-X> :NERDTreeToggle<CR>
 map <Leader>n :NERDTreeFind<CR>
 
 " # Buffer -> Tabs
- map <C-k>       :bnext<CR>
-imap <C-k> <Esc> :bnext<CR>i
- map <C-j>       :bprev<CR>
-imap <C-j> <Esc> :bprev<CR>i
+ map <C-k>       :BufferNext<CR>
+imap <C-k> <Esc> :BufferNext<CR>i
+ map <C-j>       :BufferPrevious<CR>
+imap <C-j> <Esc> :BufferPrevious<CR>i
+ map <C-w>       :BufferMovePrevious<CR>
+imap <C-w> <Esc> :BufferMovePrevious<CR>i
+ map <C-e>       :BufferMoveNext<CR>
+imap <C-e> <Esc> :BufferMoveNext<CR>i
 
 " SAVE FILE
  map <silent> <Leader>h      :updat<CR>
@@ -42,9 +44,9 @@ vmap <silent> <Leader>H <C-C>:updat<CR>
 imap <silent> <Leader>H <C-O>:updat<CR>
 
 " CLOSE TAB
- map <silent> <Leader>j      :bdele<CR>
-vmap <silent> <Leader>j <C-C>:bdele<CR>
-imap <silent> <Leader>j <C-O>:bdele<CR>
+ map <silent> <Leader>j      :BufferClose<CR>
+vmap <silent> <Leader>j <C-C>:BufferClose<CR>
+imap <silent> <Leader>j <C-O>:BufferClose<CR>
  map          <Leader>J      :bdele!<CR>
 vmap <silent> <Leader>J <C-C>:bdele!<CR>
 imap <silent> <Leader>J <C-O>:bdele!<CR>

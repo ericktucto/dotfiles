@@ -11,21 +11,16 @@ set background=dark
 " COMANDOS PERSONALIZADOS "
 """""""""""""""""""""""""""
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-function Searching(view)
+function Searching()
   let config = {
-  \    'options': ['--layout=reverse', '--preview', 'pygmentize -g -O style=monokai {}'],
+  \    'options': ['--layout=reverse', '--preview', 'batcat -n --color=always {}'],
   \    'window': { 'width': 1, 'height': 1 }
   \  }
-  if a:view == 'git'
-    let source = {
-      \    "source": "xonsh -c 'echo @($(git ls-files --exclude-standard --others) + $(git ls-files))'",
-      \    "sink": "e"
-      \  }
-    call fzf#run(extend(config, source))
-  endif
-  if a:view == 'buffer'
-    call fzf#vim#buffers(config)
-  endif
+  let source = {
+  \    "source": 'find . -name "*.*" -type f -not -path "./.git/*" -not -path "./vendor/*" -not -path "./node_modules/*"',
+  \    "sink": "e"
+  \  }
+  call fzf#run(extend(config, source))
 endfunction
 
 """"""""""""""""""
@@ -101,7 +96,7 @@ let g:blamer_template = "<commit-short> <committer>, <committer-time> • <summa
 let g:python3_host_prog='/usr/bin/python3'
 autocmd BufNewFile,BufRead *xonshrc,*.xsh set filetype=python
 
-set shell=/usr/bin/xonsh
+set shell=/usr/local/bin/xonsh
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 " Identado
