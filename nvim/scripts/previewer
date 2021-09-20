@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+import sys
+import os
+import re
+import subprocess
+
+# ESTE SCRIPT ES PARA MOSTRAR CORRECTAMENTE EL PREVIEW AL HACER BUSQUEDA DE CONTENIDOS
+
+def obtener(entrada):
+    patron = "^(.*):(\\d*):(.*)"
+    r = re.compile(patron)
+    return r.match(entrada).groups()
+
+directorio_actual = os.getcwd()
+archivo = sys.argv[1]
+resultado = "%s/%s" % (directorio_actual, archivo[2:])
+(ruta, linea, busqueda) = obtener(resultado)
+subprocess.run(["/home/erick/.local/share/nvim/plugged/fzf.vim/bin/preview.sh", f"{ruta}:{linea}"])
