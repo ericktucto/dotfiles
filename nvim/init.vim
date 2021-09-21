@@ -1,7 +1,13 @@
 call plug#begin(stdpath('data') . '/plugged')
-source $HOME/.config/nvim/plugins.vim
-Plug 'sheerun/vim-polyglot'
-Plug 'srcery-colors/srcery-vim'
+" WIDGETS
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" PENDIENTES POR INVESTIGAR
+"Plug 'liuchengxu/vista.vim'
+"Plug 'preservim/tagbar'
+
+" SOPORTE A OTROS LENGUAJES
+"Plug 'Yggdroot/indentLine'
 call plug#end()
 set termguicolors
 colorscheme srcery
@@ -14,7 +20,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " FUNCION PARA ENCONTRAR UNA PALABRA EN UN ARCHIVO
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = "grep --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=vendor -RHonia %s . || true"
+  let command_fmt = "grep --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=storage -RHonia %s . || true"
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let preview = stdpath('config') . '/scripts/previewer {}'
