@@ -24,6 +24,7 @@ imap <Leader>f <Esc>                :Flines<CR>
 
 " # Blamer
 map <Leader>m :BlamerToggle<CR>
+map <Leader>b :GitGutterPreviewHunk<CR>
 
 " # NerdTree
 map <C-X> :NERDTreeToggle<CR>

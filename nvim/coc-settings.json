@@ -1,13 +1,8 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [],
   "emmet.includeLanguages": {
-    "javascript": "html"
-  },
-  "languageserver": {
-    "kite": {
-        "command": "~/.local/share/kite/current/kite-lsp",
-        "filetypes": ["python", "go", "javascript", "php"]
-    }
+    "javascript": "html",
+    "blade": "html"
   },
   "typescript.preferences.importModuleSpecifier": "non-relative"
 }

@@ -10,8 +10,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'Yggdroot/indentLine'
 call plug#end()
 set termguicolors
-colorscheme srcery
-set background=dark
+hi Pmenu ctermbg=10 ctermfg=15 guibg=#ffffff guifg=#000000
+"set background=dark
 
 """""""""""""""""""""""""""
 " COMANDOS PERSONALIZADOS "
@@ -20,7 +20,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " FUNCION PARA ENCONTRAR UNA PALABRA EN UN ARCHIVO
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = "grep --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=storage -RHonia %s . || true"
+  let command_fmt = "grep --exclude-dir=public --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=storage -RHonia %s . || true"
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let preview = stdpath('config') . '/scripts/previewer {}'

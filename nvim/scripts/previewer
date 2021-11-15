@@ -15,4 +15,4 @@ directorio_actual = os.getcwd()
 archivo = sys.argv[1]
 resultado = "%s/%s" % (directorio_actual, archivo[2:])
 (ruta, linea, busqueda) = obtener(resultado)
-subprocess.run(["/home/erick/.local/share/nvim/plugged/fzf.vim/bin/preview.sh", f"{ruta}:{linea}"])
+subprocess.run(["/home/erick/.dotfiles/nvim/pack/widget/start/fzf.vim/bin/preview.sh", f"{ruta}:{linea}"])
