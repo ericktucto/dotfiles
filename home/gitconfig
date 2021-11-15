@@ -7,6 +7,6 @@
     publish = push origin HEAD
     update = "!~/.scripts/git.xsh update"
 [core]
-	editor = vim
+	editor = nvim
 [pull]
 	rebase = false
