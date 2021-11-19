@@ -31,27 +31,27 @@ map <C-X> :NERDTreeToggle<CR>
 map <Leader>n :NERDTreeFind<CR>
 
 " # Buffer -> Tabs
- map <C-k>       :BufferNext<CR>
-imap <C-k> <Esc> :BufferNext<CR>i
- map <C-j>       :BufferPrevious<CR>
-imap <C-j> <Esc> :BufferPrevious<CR>i
- map <C-w>       :BufferMovePrevious<CR>
-imap <C-w> <Esc> :BufferMovePrevious<CR>i
- map <C-e>       :BufferMoveNext<CR>
-imap <C-e> <Esc> :BufferMoveNext<CR>i
+ map <C-k>       :bnext<CR>
+imap <C-k> <Esc> :bnext<CR>i
+ map <C-j>       :bprevious<CR>
+imap <C-j> <Esc> :bprevious<CR>i
+" map <C-w>       :BufferMovePrevious<CR>
+"imap <C-w> <Esc> :BufferMovePrevious<CR>i
+" map <C-e>       :BufferMoveNext<CR>
+"imap <C-e> <Esc> :BufferMoveNext<CR>i
 
 " SAVE FILE
  map <silent> <Leader>h      :updat<CR>
 vmap <silent> <Leader>h <C-C>:updat<CR>
 imap <silent> <Leader>h <C-O>:updat<CR>
- map <silent> <Leader>H      :updat<CR>
-vmap <silent> <Leader>H <C-C>:updat<CR>
-imap <silent> <Leader>H <C-O>:updat<CR>
+ map <silent> <Leader>H      :updat!<CR>
+vmap <silent> <Leader>H <C-C>:updat!<CR>
+imap <silent> <Leader>H <C-O>:updat!<CR>
 
 " CLOSE TAB
- map <silent> <Leader>j      :BufferClose<CR>
-vmap <silent> <Leader>j <C-C>:BufferClose<CR>
-imap <silent> <Leader>j <C-O>:BufferClose<CR>
+ map <silent> <Leader>j      :bd<CR>
+vmap <silent> <Leader>j <C-C>:bd<CR>
+imap <silent> <Leader>j <C-O>:bd<CR>
  map          <Leader>J      :bdele!<CR>
 vmap <silent> <Leader>J <C-C>:bdele!<CR>
 imap <silent> <Leader>J <C-O>:bdele!<CR>
