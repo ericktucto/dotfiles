@@ -7,19 +7,29 @@
 "          KITE           "
 """""""""""""""""""""""""""
 " All the languages Kite supports
-let g:kite_supported_languages = ['*']
+let g:kite_supported_languages = ['javascript', 'python', 'php']
+"autocmd FileType php let b:coc_suggest_disable = 1
+"autocmd FileType javascript let b:coc_suggest_disable = 1
+"autocmd FileType python let b:coc_suggest_disable = 1
 set termguicolors
 lua << EOF
 local colors = {
     blue = "#14747e",
-    orange = "#f08e48",
-    violet = "#c43060",
+    red = "#ff5a67",
     yellow = "#ffcc1b",
     green = "#7fc06e",
-    red = "#ff5a67",
+    orange = "#f08e48",
+    violet = "#c43060",
+    purple = "#9a7044",
+    cyan = "#5dd7b9",
     white = "#fafaf8",
+    white_lite = "#e6e6dc",
     gray = "#a1a19a",
-    fg = "#ffffff",
+    gray_s = "#869696",
+    gray_m = "#6c8b91",
+    gray_l = "#517f8d",
+    dark_lite = "#00384d",
+    dark = "#002635",
     bg = "#051b26"
 }
 local atlas_theme = {
@@ -46,10 +56,20 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {{'diagnostics', sources={'coc'}}},
-        lualine_c = {{'filename', path = 1}, 'diff'},
+        lualine_b = {},
+        lualine_c = {
+            {'filename', path = 1, symbols = { modified = ' ', readonly = ' ' }},
+            {
+                'diff',
+                diff_color = {
+                    added = { fg = "#7fc06e"},
+                    modified = { fg = "#ffcc1b"},
+                    removed = { fg = "#ff5a67"}
+                }
+            }
+        },
         lualine_x = {},
-        lualine_y = {'branch'},
+        lualine_y = {'branch', 'kite#statusline'},
         lualine_z = {{'location', padding = 1}}
     },
     inactive_sections = {
@@ -65,36 +85,59 @@ require("bufferline").setup {
   highlights = {
    -- ESTA ES LA AREA DONDE NO ESTAN LOS BUFFER
     fill = {
-      guifg = '#a3a09a',
-      guibg = '#051b26'
+      guibg = colors.bg
     },
     -- ESTOS SON LAS BUFFER INACTIVAS
     background = {
-      guifg = '#a3a09a',
-      guibg = '#051b26'
+      guifg = colors.gray,
+      guibg = colors.bg
     },
     -- TODOS LOS BOTON DE CERRAR PERO DE LOS BUFFER INACTIVOS
     close_button = {
-      guifg = '#a3a09a',
-      guibg = '#051b26'
+      guifg = colors.red,
+      guibg = colors.bg
+    },
+    close_button_selected = {
+        guifg = colors.red,
+        guibg = normal_bg
     },
     buffer_selected = {
-        guifg = "#ffffff",
+        guifg = colors.white,
         guibg = normal_bg,
         gui = "bold,italic"
     },
     -- ES PARA EL BOTON DE CERRAR NEOVIM
     tab_close = {
-        guifg = normal_fg,
-        guibg = "#051b26",
+        guifg = colors.bg,
+        guibg = colors.bg,
     },
     separator = {
-        guifg = normal_fg,
-        guibg = "#051b26",
+        guifg = colors.gray_m,
+        guibg = colors.bg,
+    },
+    indicator_selected = {
+        guifg = colors.dark,
+        guibg = colors.dark,
     },
     modified = {
         guifg = normal_fg,
-        guibg = "#051b26",
+        guibg = colors.bg,
+    },
+    error = {
+        guifg = colors.red,
+        guibg = colors.bg
+    },
+    error_diagnostic = {
+        guifg = colors.red,
+        guibg = colors.bg
+    },
+    warning = {
+        guifg = colors.yellow,
+        guibg = colors.bg
+    },
+    warning_diagnostic = {
+        guifg = colors.yellow,
+        guibg = colors.bg
     }
   },
   options = {
@@ -113,8 +156,8 @@ require("bufferline").setup {
         local s = " "
         for e, n in pairs(diagnostics_dict) do
             local sym = e == "error"
-                and " "
-                or (e == "warning" and " " or "" )
+                and ""
+                or (e == "warning" and "" or "" )
                 s = s .. n .. sym
         end
         return s
