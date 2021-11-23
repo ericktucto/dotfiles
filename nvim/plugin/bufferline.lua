@@ -101,3 +101,37 @@ require("bufferline").setup {
     end
   }
 }
+
+local mapper = function (mode, shortcut, command)
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true})
+end
+
+-- NEXT, PREVIOUS BUFFER
+mapper("", "<c-k>", ":bnext<CR>")
+mapper("i", "<c-k>", "<Esc> :bnext<CR>i")
+mapper("", "<c-j>", ":bprevious<CR>")
+mapper("i", "<c-j>", "<Esc> :bprevious<CR>i")
+
+-- SAVE BUFFER
+mapper("", "<Leader>h", ":update<CR>")
+mapper("v", "<Leader>h", "<C-C> :update<CR>")
+mapper("i", "<Leader>h", "<C-O> :update<CR>")
+mapper("", "<Leader>H", ":update!<CR>")
+mapper("v", "<Leader>H", "<C-C> :update!<CR>")
+mapper("i", "<Leader>H", "<C-O> :update!<CR>")
+
+-- CLOSE BUFFER
+mapper("", "<Leader>j", ":bd<CR>")
+mapper("v", "<Leader>j", "<C-C> :bd<CR>")
+mapper("i", "<Leader>j", "<C-O> :bd<CR>")
+mapper("", "<Leader>J", ":bd!<CR>")
+mapper("v", "<Leader>J", "<C-C> :bd!<CR>")
+mapper("i", "<Leader>J", "<C-O> :bd!<CR>")
+
+-- CLOSE ALL BUFFER
+mapper("", "<Leader>u", ":%bdele<CR>")
+mapper("v", "<Leader>u", "<C-C> :%bdele<CR>")
+mapper("i", "<Leader>u", "<C-O> :%bdele<CR>")
+mapper("", "<Leader>U", ":%bdele!<CR>")
+mapper("v", "<Leader>U", "<C-C> :%bdele!<CR>")
+mapper("i", "<Leader>U", "<C-O> :%bdele!<CR>")

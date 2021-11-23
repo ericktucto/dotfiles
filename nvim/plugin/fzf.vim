@@ -43,3 +43,10 @@ endfunction
 
 command! -nargs=* -bang Flines call RipgrepFzf(<q-args>, <bang>0)
 
+" CONTROL + P
+ map <C-p>                      :call Searching('git')<CR>
+imap <C-p> <Esc>                :call Searching('git')<CR>
+ map <Leader>p                      :call Searching('buffer')<CR>
+imap <Leader>p <Esc>                :call Searching('buffer')<CR>
+ map <Leader>f                      :Flines<CR>
+imap <Leader>f <Esc>                :Flines<CR>

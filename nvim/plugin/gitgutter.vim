@@ -5,3 +5,5 @@ highlight SignColumn guibg=NONE ctermbg=NONE
 highlight GitGutterAdd    guibg=#009900 guifg=#ffffff gui=bold
 highlight GitGutterChange guibg=#bbbb00 guifg=#ffffff gui=bold
 highlight GitGutterDelete guibg=#ff2222 guifg=#ffffff gui=bold
+
+map <Leader>b :GitGutterPreviewHunk<CR>
