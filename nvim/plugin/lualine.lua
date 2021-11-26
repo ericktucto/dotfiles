@@ -21,7 +21,7 @@ local atlas_theme = {
   normal = {
     a = { fg = colors.white, bg = colors.violet },
     b = { fg = colors.white, bg = colors.bg },
-    c = { fg = colors.white, bg = colors.bg },
+    c = { fg = colors.green, bg = colors.bg },
   },
 
   insert = { a = { fg = colors.bg, bg = colors.yellow } },
@@ -41,20 +41,25 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {},
+        lualine_b = {
+          {'filename', path = 1, symbols = { modified = ' ', readonly = ' ' } },
+        },
         lualine_c = {
-            {'filename', path = 1, symbols = { modified = ' ', readonly = ' ' }},
-            {
-                'diff',
-                diff_color = {
-                    added = { fg = "#7fc06e"},
-                    modified = { fg = "#ffcc1b"},
-                    removed = { fg = "#ff5a67"}
-                }
-            }
+          {'NearestMethodOrFunction'}
         },
         lualine_x = {},
-        lualine_y = {'branch', 'kite#statusline'},
+        lualine_y = {
+          {
+            'diff',
+            diff_color = {
+              added = { fg = "#7fc06e" },
+              modified = { fg = "#ffcc1b" },
+              removed = { fg = "#ff5a67" }
+            }
+          },
+          'kite#statusline',
+          'branch'
+        },
         lualine_z = {{'location', padding = 1}}
     },
     inactive_sections = {

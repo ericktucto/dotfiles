@@ -5,4 +5,4 @@ local mapper = function (mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true})
 end
 
-mapper("", "<Leader>m", ":BlamerToggle<CR>")
+mapper("", "<Leader>b", ":BlamerToggle<CR>")

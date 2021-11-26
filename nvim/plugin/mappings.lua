@@ -16,7 +16,16 @@ mapper("v", "<Leader>y", '"+y')
 -- PRETTIER
 mapper("", "<Leader>r", ":Prettier<CR>")
 
+-- FZF
+mapper("", "<Leader>f", ":Flines<CR>")
+mapper("i", "<Leader>f", "<Esc> :Flines<CR>")
+
+-- TAGBAR
+mapper("", "<Leader>m", ":TagbarToggle<CR>")
+mapper("i", "<Leader>m", "<Esc> :TagbarToggle<CR>")
+
 -- QUIT TERMINAL WITH CONTROL + N
 vim.cmd([[
   tnoremap <C-n> <C-\><C-n>
 ]])
+

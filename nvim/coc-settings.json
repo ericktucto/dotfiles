@@ -2,7 +2,8 @@
   "coc.preferences.formatOnSaveFiletypes": [],
   "emmet.includeLanguages": {
     "javascript": "html",
-    "blade": "html"
+    "blade": "html",
+    "blade.php": "html"
   },
   "typescript.preferences.importModuleSpecifier": "non-relative"
 }
