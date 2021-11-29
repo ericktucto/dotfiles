@@ -3,12 +3,18 @@ from os.path import isfile
 $BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
 $XONSH_SHOW_TRACEBACK = True
 $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
+$ANDROID_HOME = f"{$HOME}/Android/Sdk"
+$TERM='xterm-256color'
 
 # MI PATH
 $PATH.append(f"{$HOME}/.cargo/env")
+$PATH.append(f"{$ANDROID_HOME}/platform-tools")
 $PATH.append('/opt/blender')
+$PATH.append('/opt/node14/bin')
 $PATH.append('/opt/ngrok')
 $PATH.append('/opt/vagrant')
+$PATH.append('/usr/local/go/bin')
+$PATH.append('~/go/bin')
 $PATH.append('~/.yarn/bin')
 $PATH.append('~/.config/composer/vendor/bin')
 $PATH.append('~/.npm-global/bin')
@@ -17,11 +23,11 @@ $PATH.append(f"{$HOME}/Tools/azuredatastudio")
 
 # ENVIRONMENT VARIABLES
 $TERM = "xterm-color"
-$NVM_DIR=f"{$HOME}/.nvm"
+#$NVM_DIR=f"{$HOME}/.nvm"
 $TITLE = 'Terminal'
 
 # LOAD SOURCES BASH
-source-bash $NVM_DIR/nvm.sh
+#source-bash $HOME/.xonsh/nvm.sh
 
 # LOAD XONTRIB PLUGINS
 xontrib load add_variable
@@ -38,3 +44,15 @@ if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
 
 chprompt profile default
 
+def password_mac(mac):
+    splitper = lambda n, cadena: [cadena[i:i + n] for i in range(0, len(cadena), n)]
+    mac = mac.replace(":", "")
+    salida = ""
+    for p in splitper(4, mac.upper()):
+        [primero, segundo] = splitper(2, p)
+        salida += "".join([segundo, primero])
+    print(mac[:6])
+    print(mac[-6:])
+    print(mac)
+    print(mac.upper())
+    print(salida)

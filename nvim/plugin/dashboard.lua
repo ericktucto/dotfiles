@@ -4,11 +4,11 @@ vim.g.dashboard_custom_section = {
 -- Open last session                     SPC s l
 -- New file                              SPC c n
   find_file = {
-    description = {' Find file                Ctrl+h p'},
+    description = {' Buscar archivo           Ctrl+h p'},
     command = [[lua Searching('git')]]
   },
   find_word = {
-    description = {' Find word                Ctrl+h f'},
+    description = {' Buscar palabra           Ctrl+h f'},
     command = 'FWord'
   },
   open_projects = {
