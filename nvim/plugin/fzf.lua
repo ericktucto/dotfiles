@@ -1,3 +1,4 @@
+local fzf = require("fzf")
 -- MODOS PARA LA BUSQUEDA DE ARCHIVOS EN UN PROYECTO
 function Searching(view)
   if (view == 'git') then
@@ -48,6 +49,20 @@ vim.cmd([[
   command! -nargs=* -bang FWord lua FindWord(<q-args>, <bang>0)
 ]])
 
+-- ESTA FUNCION LISTA MIS PROYECTOS
+function Projects()
+  coroutine.wrap(function()
+    local projects = require('project_nvim').get_recent_projects()
+    local result = fzf.fzf(projects, "--ansi --layout=reverse --prompt='Elige un proyecto >>> '", { border = false })
+    if result then
+      require('project_nvim.project').set_pwd(result[1], "stixcode")
+      vim.fn["NERDTreeCWD"]()
+    else
+      print("Hubo un fallo")
+    end
+  end)()
+end
+
 local mapper = function (mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true})
 end
@@ -55,4 +70,5 @@ mapper("n", "<c-p>", [[<cmd>lua Searching('git')<CR>]])
 mapper("n", "<Leader>p", [[<cmd>lua Searching('buffer')<CR>]])
 mapper("", "<Leader>f", ":FWord<CR>")
 mapper("i", "<Leader>f", "<Esc> :FWord<CR>")
+mapper("n", "<Leader>k", [[<cmd>lua Projects()<CR>]])
 

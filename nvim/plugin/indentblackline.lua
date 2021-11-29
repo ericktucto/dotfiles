@@ -7,6 +7,8 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 vim.opt.list = true
 vim.opt.listchars["extends"] = "eol:↴"
 require("indent_blankline").setup {
+  buftype_exclude = { "terminal" },
+  filetype_exclude = { "dashboard" },
   space_char_blankline = " ",
   char_highlight_list = {
       "IndentBlanklineIndent1",
