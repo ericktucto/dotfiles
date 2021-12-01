@@ -39,3 +39,4 @@ vim.o.number = true
 vim.wo.relativenumber = true
 vim.o.relativenumber = true
 
+vim.o.updatetime = 100
