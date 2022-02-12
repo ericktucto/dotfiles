@@ -23,11 +23,11 @@ $PATH.append(f"{$HOME}/Tools/azuredatastudio")
 
 # ENVIRONMENT VARIABLES
 $TERM = "xterm-color"
-#$NVM_DIR=f"{$HOME}/.nvm"
+$NVM_DIR=f"{$HOME}/.nvm"
 $TITLE = 'Terminal'
 
 # LOAD SOURCES BASH
-#source-bash $HOME/.xonsh/nvm.sh
+source-bash /usr/share/nvm/nvm.sh
 
 # LOAD XONTRIB PLUGINS
 xontrib load add_variable
@@ -43,6 +43,12 @@ if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
     source $HOME/.xonsh/personal.xsh
 
 chprompt profile default
+
+def preCreacionCamara():
+    sudo modprobe v4l2loopback video_nr=5 card_label="Mi Camara Virtual" exclusive_caps=1
+
+def crearCamara(imagen):
+    ffmpeg -loop 1 -re -i @(imagen) -f v4l2 -vcodec rawvideo -pix_fmt rgb24 /dev/video5
 
 def password_mac(mac):
     splitper = lambda n, cadena: [cadena[i:i + n] for i in range(0, len(cadena), n)]

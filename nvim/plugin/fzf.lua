@@ -5,7 +5,7 @@ function Searching(view)
     vim.fn["fzf#run"]({
       options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
       window = { width = 1, height = 1 },
-      source = 'find . -name "*.*" -type f -not -path "./.git/*" -not -path "./vendor/*" -not -path "./node_modules/*"',
+      source = 'find . -name "*.*" -type f -not -path "./.expo/*" -not -path "./.expo-shared/*" -not -path "./.git/*" -not -path "./vendor/*" -not -path "./node_modules/*"',
       sink = "e"
     })
   elseif (view == 'buffer') then

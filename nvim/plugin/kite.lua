@@ -1,1 +1,1 @@
-vim.g.kite_supported_languages = {'javascript', 'python'}
+vim.g.kite_supported_languages = {} --{'javascript', 'python'}

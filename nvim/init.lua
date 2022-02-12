@@ -1,4 +1,4 @@
-vim.o.shell = "/usr/local/bin/xonsh"
+vim.o.shell = "/usr/bin/xonsh"
 -- WildIgnore Stuff
 local wildignored = {
   '*/tmp/*',

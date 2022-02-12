@@ -3,7 +3,9 @@
   "emmet.includeLanguages": {
     "javascript": "html",
     "blade": "html",
-    "blade.php": "html"
+    "blade.php": "html",
+    "twig": "html",
+    "html.twig.js.css": "html",
   },
   "typescript.preferences.importModuleSpecifier": "non-relative"
 }

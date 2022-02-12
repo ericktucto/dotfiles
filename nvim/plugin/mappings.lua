@@ -17,8 +17,8 @@ mapper("v", "<Leader>y", '"+y')
 mapper("", "<Leader>r", ":Prettier<CR>")
 
 -- TAGBAR
-mapper("", "<Leader>m", ":TagbarToggle<CR>")
-mapper("i", "<Leader>m", "<Esc> :TagbarToggle<CR>")
+mapper("", "<Leader>m", ":Vista<CR>")
+mapper("i", "<Leader>m", "<Esc> :Vista<CR>")
 
 -- QUIT TERMINAL WITH CONTROL + N
 vim.cmd([[
