@@ -7,8 +7,8 @@ mapper("", "<c-i>", "<c-b>")
 mapper("", "<c-o>", "<c-f>")
 
 -- QUIT NEOVIM
-mapper("n", "q", ":quit<CR>")
-mapper("n", "Q", ":quit!<CR>")
+mapper("n", "<Leader>q", ":quit<CR>")
+mapper("n", "<Leader>Q", ":quit!<CR>")
 
 -- COPY ON CLIPBOARD SYSTEM
 mapper("v", "<Leader>y", '"+y')

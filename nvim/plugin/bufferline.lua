@@ -52,6 +52,14 @@ require("bufferline").setup {
       guifg = colors.gray_m,
       guibg = colors.bg,
     },
+    info = {
+      guifg = normal_fg,
+      guibg = colors.bg
+    },
+    info_diagnostic = {
+      guifg = normal_fg,
+      guibg = colors.bg
+    },
     indicator_selected = {
       guifg = colors.dark,
       guibg = colors.dark,

@@ -2,10 +2,19 @@ local fzf = require("fzf")
 -- MODOS PARA LA BUSQUEDA DE ARCHIVOS EN UN PROYECTO
 function Searching(view)
   if (view == 'git') then
+    local excludedDir = table.concat({
+      "",
+      '"./.expo/*"',
+      '"./.expo-shared/*"',
+      '"./.git/*"',
+      '"./vendor/*"',
+      '"./node_modules/*"',
+      '"./docker/*"',
+    }, " -not -path ")
     vim.fn["fzf#run"]({
       options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
       window = { width = 1, height = 1 },
-      source = 'find . -name "*.*" -type f -not -path "./.expo/*" -not -path "./.expo-shared/*" -not -path "./.git/*" -not -path "./vendor/*" -not -path "./node_modules/*"',
+      source = 'find . -name "*.*" -type f'..excludedDir,
       sink = "e"
     })
   elseif (view == 'buffer') then
@@ -18,15 +27,20 @@ end
 
 -- BUSCAR UNA PALABRA EN EL PROYECTO
 function _G.FindWord(query, fullscreen)
-  local excludedDir = { '.git', 'node_modules', 'vendor', 'storage', 'public' }
-  local excludedDirString = ""
-  for _, value in ipairs(excludedDir) do
-    excludedDirString = excludedDirString .. string.format("--exclude-dir=%s  ", value)
-  end
-
+  local excludedDir = table.concat({
+    "",
+    '.git',
+    'node_modules',
+    'vendor',
+    'storage',
+    'public',
+    'docker',
+    'expo',
+    'expo-shared'
+  }, " --exclude-dir=")
   local commandSearch = "grep %s -RHonia %s . || true"
-  local initial_command = string.format(commandSearch, excludedDirString, "''")
-  local reload_command = string.format(commandSearch, excludedDirString, '{q}')
+  local initial_command = string.format(commandSearch, excludedDir, "''")
+  local reload_command = string.format(commandSearch, excludedDir, '{q}')
 
   local preview = string.format('%s/scripts/previewer {}', vim.fn.stdpath('config'))
   local spec = {
