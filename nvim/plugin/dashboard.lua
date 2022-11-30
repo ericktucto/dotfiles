@@ -3,20 +3,23 @@ vim.g.dashboard_custom_section = {
 -- Recently opened files                 SPC f h
 -- Open last session                     SPC s l
 -- New file                              SPC c n
-  find_file = {
-    description = {' Buscar archivo           Ctrl p  '},
-    command = [[lua Searching('git')]]
-  },
-  find_word = {
-    description = {' Buscar palabra           Ctrl h f'},
-    command = 'FWord'
-  },
-  open_projects = {
-    description = {' Abrir proyecto           Ctrl h k'},
-    command = [[lua Projects()]]
-  }
+  dashboard_find_file = { ' Buscar archivo           Ctrl p  ' },
+  dashboard_find_word = { ' Buscar palabra           Ctrl h f' },
+  dashboard_open_project = { ' Abrir proyecto           Ctrl h k' },
 }
-vim.g.dashboard_preview_pipeline = 'lolcat'
+
+vim.cmd([[
+  function! DASHBOARD_FIND_FILE()
+    lua Searching('git')
+  endfunction
+  function! DASHBOARD_FIND_WORD()
+    FWord
+  endfunction
+  function! DASHBOARD_OPEN_PROJECT()
+    lua Projects()
+  endfunction
+]])
+
 vim.g.dashboard_custom_header = {
   '██╗   ██╗██╗███╗   ███╗ ██████╗ ██████╗ ██████╗ ███████╗',
   '██║   ██║██║████╗ ████║██╔════╝██╔═══██╗██╔══██╗██╔════╝',

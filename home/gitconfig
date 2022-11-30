@@ -1,5 +1,5 @@
 [user]
-    email = erick.tucto@outlook.com
+	email = erick@ericktucto.com
     name = Erick Tucto
 [alias]
     back = reset HEAD^
@@ -10,3 +10,5 @@
 	editor = nvim
 [pull]
 	rebase = false
+[cola]
+	spellcheck = false

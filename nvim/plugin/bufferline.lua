@@ -22,67 +22,59 @@ require("bufferline").setup {
   highlights = {
    -- ESTA ES LA AREA DONDE NO ESTAN LOS BUFFER
     fill = {
-      guibg = colors.bg
+      bg = colors.bg
     },
     -- ESTOS SON LAS BUFFER INACTIVAS
     background = {
-      guifg = colors.gray,
-      guibg = colors.bg
+      fg = colors.gray,
+      bg = colors.bg
     },
     -- TODOS LOS BOTON DE CERRAR PERO DE LOS BUFFER INACTIVOS
     close_button = {
-      guifg = colors.red,
-      guibg = colors.bg
+      fg = colors.red,
+      bg = colors.bg
     },
     close_button_selected = {
-      guifg = colors.red,
-      guibg = normal_bg
+      fg = colors.red,
+      bg = normal_bg
     },
     buffer_selected = {
-      guifg = colors.white,
-      guibg = normal_bg,
-      gui = "bold,italic"
+      fg = colors.white,
+      bg = normal_bg,
+      italic = true
     },
     -- ES PARA EL BOTON DE CERRAR NEOVIM
     tab_close = {
-      guifg = colors.bg,
-      guibg = colors.bg,
+      fg = colors.bg,
+      bg = colors.bg,
     },
     separator = {
-      guifg = colors.gray_m,
-      guibg = colors.bg,
-    },
-    info = {
-      guifg = normal_fg,
-      guibg = colors.bg
-    },
-    info_diagnostic = {
-      guifg = normal_fg,
-      guibg = colors.bg
+      fg = colors.gray_m,
+      bg = colors.bg,
     },
     indicator_selected = {
-      guifg = colors.dark,
-      guibg = colors.dark,
+      fg = colors.dark,
+      bg = colors.dark,
     },
     modified = {
-      guifg = normal_fg,
-      guibg = colors.bg,
+      fg = normal_fg,
+      bg = colors.bg,
     },
     error = {
-      guifg = colors.red,
-      guibg = colors.bg
+      fg = colors.red,
+      bg = colors.bg
     },
     error_diagnostic = {
-      guifg = colors.red,
-      guibg = colors.bg
+      fg = colors.red,
+      bg = colors.bg
     },
     warning = {
-      guifg = colors.yellow,
-      guibg = colors.bg
+      fg = colors.yellow,
+      bg = colors.bg
     },
     warning_diagnostic = {
-      guifg = colors.yellow,
-      guibg = colors.bg
+      fg = colors.yellow,
+      bg = colors.bg
     }
   },
   options = {
