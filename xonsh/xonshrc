@@ -1,10 +1,14 @@
 from os.path import isfile
 # GENERAL SETTINGS
-$BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
+#$BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
 $XONSH_SHOW_TRACEBACK = True
 $XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
+$FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
 $ANDROID_HOME = f"{$HOME}/Android/Sdk"
 $TERM='xterm-256color'
+
+# VULKAN
+$VK_ICD_FILENAMES = "/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.js"
 
 # MI PATH
 $PATH.append(f"{$HOME}/.cargo/env")
@@ -31,7 +35,7 @@ source-bash /usr/share/nvm/nvm.sh
 
 # LOAD XONTRIB PLUGINS
 xontrib load add_variable
-xontrib load base16_shell
+#xontrib load base16_shell
 
 # FUNCTIONS
 s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd
