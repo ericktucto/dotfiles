@@ -28,7 +28,7 @@ function Searching(view)
     vim.fn["fzf#run"]({
       options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
       window = { width = 1, height = 1 },
-      source = 'git status -s | awk "{print $2}"',
+      source = string.format('%s/scripts/gitstatus.py', vim.fn.stdpath('config')),
       sink = "e"
     })
   end
