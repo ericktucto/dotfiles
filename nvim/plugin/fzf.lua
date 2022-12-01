@@ -5,11 +5,13 @@ function Searching(view)
     local excludedDir = table.concat({
       "",
       '"./.expo/*"',
+      '"./venv/*"',
       '"./.expo-shared/*"',
       '"./.git/*"',
       '"./vendor/*"',
       '"./node_modules/*"',
       '"./docker/*"',
+      '"./coverage/*"',
     }, " -not -path ")
     vim.fn["fzf#run"]({
       options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
@@ -20,8 +22,15 @@ function Searching(view)
   elseif (view == 'buffer') then
     vim.fn['fzf#vim#buffers']({
         options = { '--layout=reverse' },
-        window = { width = 0.5, height = 0.5 }
+        window = { width = 1, height = 1 }
       })
+  elseif (view == 'git-status') then
+    vim.fn["fzf#run"]({
+      options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
+      window = { width = 1, height = 1 },
+      source = 'git status -s | awk "{print $2}"',
+      sink = "e"
+    })
   end
 end
 
@@ -30,13 +39,15 @@ function _G.FindWord(query, fullscreen)
   local excludedDir = table.concat({
     "",
     '.git',
+    'venv',
     'node_modules',
     'vendor',
     'storage',
     'public',
     'docker',
     'expo',
-    'expo-shared'
+    'expo-shared',
+    'coverage'
   }, " --exclude-dir=")
   local commandSearch = "grep %s -RHonia %s . || true"
   local initial_command = string.format(commandSearch, excludedDir, "''")
@@ -85,4 +96,5 @@ mapper("n", "<Leader>p", [[<cmd>lua Searching('buffer')<CR>]])
 mapper("", "<Leader>f", ":FWord<CR>")
 mapper("i", "<Leader>f", "<Esc> :FWord<CR>")
 mapper("n", "<Leader>k", [[<cmd>lua Projects()<CR>]])
+mapper("n", "<Leader>s", [[<cmd>lua Searching('git-status')<CR>]])
 
