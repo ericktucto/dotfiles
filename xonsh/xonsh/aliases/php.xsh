@@ -24,3 +24,10 @@ def t(args):
 def tw(args):
     $[./vendor/bin/phpunit-watcher @(args)]
 
+@alias
+def ptestname(args):
+    frase = " ".join(args)
+    traducido = $(trans es:en @(frase) -b)
+    nombre = "".join([x.capitalize() for x in traducido.split()])
+    print("test%s" % (nombre))
+
