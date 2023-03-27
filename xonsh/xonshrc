@@ -1,3 +1,4 @@
+__import__('warnings').simplefilter('ignore', DeprecationWarning, 118)
 from os.path import isfile
 # GENERAL SETTINGS
 #$BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
@@ -34,8 +35,21 @@ $TITLE = 'Terminal'
 source-bash /usr/share/nvm/nvm.sh
 
 # LOAD XONTRIB PLUGINS
-xontrib load add_variable
+xontrib load add_variable vox
 #xontrib load base16_shell
+
+@events.on_chdir
+def deactivate_pipenv(olddir, newdir: str):
+    def exists_venv(path: list, exists: bool = False) -> bool:
+        if len(path) == 0:
+            return False
+        if exists:
+            return True
+        pathToml = "/".join(path + ["pyproject.toml"])
+        return exists_venv(path[:-1], isfile(pathToml))
+    if not exists_venv(newdir.split("/")) and "VIRTUAL_ENV" in ${...}:
+        $(vox deactivate)
+
 
 # FUNCTIONS
 s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd

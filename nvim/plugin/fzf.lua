@@ -5,11 +5,12 @@ function Searching(view)
     local excludedDir = table.concat({
       "",
       '"./.expo/*"',
+      '"./target/*"',
       '"./venv/*"',
       '"./.expo-shared/*"',
       '"./.git/*"',
       '"./vendor/*"',
-      '"./node_modules/*"',
+      '"*/node_modules/*"',
       '"./docker/*"',
       '"./coverage/*"',
     }, " -not -path ")
@@ -47,7 +48,8 @@ function _G.FindWord(query, fullscreen)
     'docker',
     'expo',
     'expo-shared',
-    'coverage'
+    'coverage',
+    'target'
   }, " --exclude-dir=")
   local commandSearch = "grep %s -RHonia %s . || true"
   local initial_command = string.format(commandSearch, excludedDir, "''")

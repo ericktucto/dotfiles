@@ -1,14 +1,16 @@
 [user]
-	email = erick@ericktucto.com
-    name = Erick Tucto
+  email = erick@ericktucto.com
+  name = Erick Tucto
 [alias]
-    back = reset HEAD^
-    ecommit = "!~/.scripts/git.xsh ecommit"
-    publish = push origin HEAD
-    update = "!~/.scripts/git.xsh update"
+  back = reset HEAD^
+  ecommit = "!~/.scripts/git.xsh ecommit"
+  publish = push origin HEAD
+  update = "!~/.scripts/git.xsh update"
 [core]
-	editor = nvim
+  editor = nvim
 [pull]
-	rebase = false
+  rebase = false
 [cola]
-	spellcheck = false
+  spellcheck = false
+[protocol "file"]
+	allow = always

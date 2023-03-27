@@ -1,16 +1,38 @@
-vim.g.NERDTreeDirArrowExpandable = ''
-vim.g.NERDTreeDirArrowCollapsible = ''
-vim.g.NERDTreeGitStatusUseNerdFonts = 1
-vim.g.NERDTreeShowLineNumber = 1
-vim.cmd([[
-  autocmd FileType nerdtree setlocal relativenumber
-]])
+-- examples for your init.lua
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
 
 local mapper = function (mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true})
 end
 
-
-mapper('', '<c-x>', ':NERDTreeToggle<CR>')
-mapper("", "<Leader>n", ':NERDTreeFind<CR>')
+mapper('', '<c-x>', ':NvimTreeToggle<CR>')
+mapper("", "<Leader>n", ':NvimTreeFindFile<CR>')
 
