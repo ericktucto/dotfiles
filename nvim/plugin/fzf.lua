@@ -13,6 +13,7 @@ function Searching(view)
       '"*/node_modules/*"',
       '"./docker/*"',
       '"./coverage/*"',
+      '"./clockwork/*"',
     }, " -not -path ")
     vim.fn["fzf#run"]({
       options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
@@ -47,6 +48,7 @@ function _G.FindWord(query, fullscreen)
     'public',
     'docker',
     'expo',
+    'clockwork',
     'expo-shared',
     'coverage',
     'target'
