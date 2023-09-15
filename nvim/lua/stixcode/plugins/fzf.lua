@@ -1,4 +1,3 @@
-local fzf = require("fzf")
 -- MODOS PARA LA BUSQUEDA DE ARCHIVOS EN UN PROYECTO
 function Searching(view)
   if (view == 'git') then
@@ -36,8 +35,7 @@ function Searching(view)
   end
 end
 
--- BUSCAR UNA PALABRA EN EL PROYECTO
-function _G.FindWord(query, fullscreen)
+function FindWord(query, fullscreen)
   local excludedDir = table.concat({
     "",
     '.git',
@@ -74,13 +72,10 @@ function _G.FindWord(query, fullscreen)
   vim.fn['fzf#vim#grep'](initial_command, 1, spec, fullscreen)
 end
 
-vim.cmd([[
-  command! -nargs=* -bang FWord lua FindWord(<q-args>, <bang>0)
-]])
-
 -- ESTA FUNCION LISTA MIS PROYECTOS
 function Projects()
   coroutine.wrap(function()
+    local fzf = require("fzf")
     local projects = require('project_nvim').get_recent_projects()
     local result = fzf.fzf(projects, "--ansi --layout=reverse --prompt='Elige un proyecto >>> '", { border = false })
     if result then
@@ -91,14 +86,20 @@ function Projects()
     end
   end)()
 end
+return {
+  "junegunn/fzf.vim",
+  dependencies = {
+    { "junegunn/fzf" }
+  },
+  keys = {
+    { "<c-p>", function() Searching("git") end, desc = "Buscar en el proyecto" },
+    { "<Leader>s", function() Searching('git-status') end, desc = "Buscar en el stage de git" },
+    { "<Leader>p", function() Searching('buffer') end, desc = "Buscar entre los buffer" },
 
-local mapper = function (mode, shortcut, command)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true})
-end
-mapper("n", "<c-p>", [[<cmd>lua Searching('git')<CR>]])
-mapper("n", "<Leader>p", [[<cmd>lua Searching('buffer')<CR>]])
-mapper("", "<Leader>f", ":FWord<CR>")
-mapper("i", "<Leader>f", "<Esc> :FWord<CR>")
-mapper("n", "<Leader>k", [[<cmd>lua Projects()<CR>]])
-mapper("n", "<Leader>s", [[<cmd>lua Searching('git-status')<CR>]])
 
+
+    -- { "<Leader>k", "<cmd>lua Projects()<CR>", desc = "Abrir proyecto..." },
+    -- { "<Leader>f", "<cmd>FWord<CR>", desc = "Buscar una palabra en el proyecto" },
+    -- { "<Leader>f", "<Esc> :FWord<CR>", desc = "Buscar una palabra en el proyecto", mode = "i" }
+  }
+}

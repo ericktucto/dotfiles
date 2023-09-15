@@ -1,0 +1,83 @@
+__import__('warnings').simplefilter('ignore', DeprecationWarning, 118)
+from os.path import isfile
+# GENERAL SETTINGS
+#$BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
+$XONSH_SHOW_TRACEBACK = True
+$XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
+$FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
+$ANDROID_HOME = f"{$HOME}/Android/Sdk"
+$TERM='xterm-256color'
+
+# VULKAN
+$VK_ICD_FILENAMES = "/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.js"
+
+# MI PATH
+$PATH.append(f"{$HOME}/.cargo/env")
+$PATH.append(f"{$ANDROID_HOME}/platform-tools")
+$PATH.append('/opt/blender')
+$PATH.append('/opt/node14/bin')
+$PATH.append('/opt/ngrok')
+$PATH.append('/opt/vagrant')
+$PATH.append('/usr/local/go/bin')
+$PATH.append('~/go/bin')
+$PATH.append('~/.yarn/bin')
+$PATH.append('~/.config/composer/vendor/bin')
+$PATH.append('~/.npm-global/bin')
+$PATH.append('~/.local/bin')
+$PATH.append(f"{$HOME}/Tools/azuredatastudio")
+
+# ENVIRONMENT VARIABLES
+$TERM = "xterm-color"
+$NVM_DIR=f"{$HOME}/.nvm"
+$TITLE = 'Terminal'
+
+# LOAD SOURCES BASH
+source-bash $NVM_DIR/nvm.sh
+
+# LOAD XONTRIB PLUGINS
+xontrib load add_variable vox
+#xontrib load base16_shell
+
+@events.on_chdir
+def deactivate_pipenv(olddir, newdir: str):
+    def exists_venv(path: list, exists: bool = False) -> bool:
+        if len(path) == 0:
+            return False
+        if exists:
+            return True
+        pathToml = "/".join(path + ["pyproject.toml"])
+        return exists_venv(path[:-1], isfile(pathToml))
+    if not exists_venv(newdir.split("/")) and "VIRTUAL_ENV" in ${...}:
+        $(vox deactivate)
+
+
+# FUNCTIONS
+s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd
+
+l = lambda cmd : cmd.split('\n')[:-1] if type(cmd) is str else cmd
+
+# LOAD CUSTOM SETTINGS
+if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
+    source $HOME/.xonsh/personal.xsh
+
+chprompt profile default
+
+def preCreacionCamara():
+    sudo modprobe v4l2loopback video_nr=5 card_label="Mi Camara Virtual" exclusive_caps=1
+
+def crearCamara(imagen):
+    ffmpeg -loop 1 -re -i @(imagen) -f v4l2 -vcodec rawvideo -pix_fmt rgb24 /dev/video5
+
+def password_mac(mac):
+    splitper = lambda n, cadena: [cadena[i:i + n] for i in range(0, len(cadena), n)]
+    mac = mac.replace(":", "")
+    salida = ""
+    for p in splitper(4, mac.upper()):
+        [primero, segundo] = splitper(2, p)
+        salida += "".join([segundo, primero])
+    print(mac[:6])
+    print(mac[-6:])
+    print(mac)
+    print(mac.upper())
+    print(salida)
+aliases["batcat"] = "bat"

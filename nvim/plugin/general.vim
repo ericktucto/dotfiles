@@ -1,16 +1,15 @@
 set encoding=utf-8
-hi CocMenuSel ctermbg=10 ctermfg=15 guibg=#36002b
 hi Pmenu ctermbg=10 ctermfg=15 guibg=#051b26 guifg=#ffffff
 hi PmenuSel ctermbg=10 ctermfg=15 guibg=#ffffff guifg=#051b26
 hi Visual ctermbg=255 ctermfg=10 cterm=NONE guibg=#2e4a59 guifg=NONE gui=NONE
 hi NonText guifg=#ffff60
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " INVESTIGAR DE DONDE ES ESTA FUNCION
 function! NearestMethodOrFunction() abort
   let result = get(b:, 'vista_nearest_method_or_function', '')
   return len(result) == 0 ? result : "\uf794 " . result
 endfunction
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 syntax enable
 set backspace=indent,eol,start
 set hidden
@@ -20,7 +19,7 @@ set noshowmode " IMPIDE VER EL MODO POR DEFAULT NEOVIM (INSERT,VISUAL,NORMAL).
 set showmatch
 set list
 set eol
-let mapleader="\<C-h>"
+" let mapleader="\<C-h>"
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
 

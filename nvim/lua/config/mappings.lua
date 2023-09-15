@@ -14,7 +14,7 @@ mapper("n", "<Leader>Q", ":quit!<CR>")
 mapper("v", "<Leader>y", '"+y')
 
 -- PRETTIER
-mapper("", "<Leader>r", ":Prettier<CR>")
+-- mapper("", "<Leader>r", ":Prettier<CR>")
 
 -- TAGBAR
 mapper("", "<Leader>m", ":Vista<CR>")
