@@ -6,7 +6,7 @@ return {
     { "<leader>n", ":NvimTreeFindFile<cr>", desc = "Revelar en el explorador de archivos" },
   },
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    { require("stixcode.dependencies.devicons"), },
   },
   opts = {
     sort_by = "case_sensitive",
