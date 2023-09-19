@@ -39,6 +39,7 @@ return {
   },
   opts = {
     options = {
+      truncate_names = false,
       offsets = {
         {
           filetype = "NvimTree",

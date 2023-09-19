@@ -1,7 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
-    { require("stixcode.dependencies.devicons") },
+    require("stixcode.dependencies.devicons"),
   },
   opts = {
     options = {
