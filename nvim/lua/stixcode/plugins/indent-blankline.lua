@@ -21,6 +21,7 @@ return {
       "lspinfo",
       "mason",
       "lazy",
+      "NvimTree",
     },
     space_char_blankline = " ",
     char_highlight_list = {

@@ -48,16 +48,6 @@ return {
         }
       },
       separator_style = "thin",
-      diagnostics = "nvim_lsp",
-      diagnostics_update_in_insert = true,
-      diagnostics_indicator = function(count, level, diagnostics_dict, context)
-        local diag = {}
-        for e, n in pairs(diagnostics_dict) do
-          local sym = e == "error" and "" or (e == "warning" and "" or "" )
-          table.insert(diag, n .. " " .. sym)
-        end
-        return table.concat(diag, "  ")
-      end
     }
   }
 }
