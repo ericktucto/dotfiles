@@ -4,4 +4,3 @@ vim.o.wrap = false
 vim.o.emoji = true
 vim.wo.colorcolumn = '80'
 vim.o.colorcolumn = '80'
-vim.cmd.colorscheme('tokyonight')

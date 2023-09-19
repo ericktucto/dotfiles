@@ -16,15 +16,3 @@ vim.opt.rtp:prepend(lazypath)
 -- installation plugins
 require("lazy").setup("stixcode/plugins")
 -- end: installation puglins
-
--- run lsp-zero
-local lsp = require('lsp-zero').preset({})
-
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
-
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
--- end: run lsp-zero

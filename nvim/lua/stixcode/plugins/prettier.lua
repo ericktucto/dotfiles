@@ -1,6 +1,6 @@
 return {
   'sbdchd/neoformat',
   keys = {
-    { "<Leader>r", ":Neoformat", desc = "Prettier" },
+    { "<Leader>r", ":Neoformat<cr>", desc = "Prettier" },
   }
 }

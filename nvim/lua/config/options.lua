@@ -40,9 +40,12 @@ vim.o.updatetime = 100
 
 vim.o.shell = "/usr/bin/xonsh"
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
+vim.opt.list = true
 vim.opt.listchars = { trail = '·', eol = '↴', nbsp = '%' } --, tab = ' ' }
 vim.g.python3_host_prog='/usr/bin/python3'
 
 vim.opt.listchars["extends"] = "eol:↴"
+
+vim.g.editorconfig = true

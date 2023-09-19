@@ -86,15 +86,22 @@ function Projects()
     end
   end)()
 end
+vim.cmd([[
+  command! -nargs=* -bang FWord lua FindWord(<q-args>, <bang>0)
+]])
 return {
   "junegunn/fzf.vim",
   dependencies = {
-    { "junegunn/fzf" }
+    {
+      "junegunn/fzf",
+      build = "./install --bin",
+    }
   },
   keys = {
     { "<c-p>", function() Searching("git") end, desc = "Buscar en el proyecto" },
     { "<Leader>s", function() Searching('git-status') end, desc = "Buscar en el stage de git" },
     { "<Leader>p", function() Searching('buffer') end, desc = "Buscar entre los buffer" },
+    { "<Leader>f", "<cmd>:FWord<CR>", desc = "Buscar una palabra en el proyecto", mode = "n" },
 
 
 

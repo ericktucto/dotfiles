@@ -7,18 +7,30 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
 return {
   "lukas-reineke/indent-blankline.nvim",
+  config = true,
+  lazy = true,
+  event = { "BufReadPost", "BufNewFile" },
   opts = {
-    buftype_exclude = { "terminal" },
-    filetype_exclude = { "dashboard" },
+    show_current_context = true,
+    show_current_context_start = true,
+    buftype_exclude = {
+      "terminal"
+    },
+    filetype_exclude = {
+      "dashboard",
+      "lspinfo",
+      "mason",
+      "lazy",
+    },
     space_char_blankline = " ",
     char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
+      "IndentBlanklineIndent1",
+      "IndentBlanklineIndent2",
+      "IndentBlanklineIndent3",
+      "IndentBlanklineIndent4",
+      "IndentBlanklineIndent5",
+      "IndentBlanklineIndent6",
     },
-  }
+  },
 }
 
