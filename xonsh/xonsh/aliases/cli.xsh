@@ -1,4 +1,5 @@
 from xontrib.add_variable.decorators import alias
+from .dockercompose import main as dockercompose
 
 DEV_HELP = """dev version 20.06.1 - por Erick Tucto
 
@@ -86,58 +87,17 @@ Divisor de videos.
 """
 
 @alias
+def giflores(args):
+    repo = args[0]
+    password = args[1][:-1]
+    url = f"https://iflorespaz:{password}@github.com/{repo}.git"
+    git clone @(url)
+
+@alias
 def dev(args):
-    if len(args) == 0:
-        return DEV_HELP
-    if len(args) == 1 and args[0] in ["-v", "-version", "--version"]:
-        return "dev v20.06.1"
-    l = lambda cmd : cmd.split("\n")[:-1] if type(cmd) is str else cmd
-    def traerOpcion(opcion, espacio=1):
-        index = args.index(opcion) + espacio
-        return args[index] if len(args) > index else None
-
-    env = args[0]
-    if env in ['search']:
-        # PARA BUSCAR POR NOMBRE DE ARCHIVO
-        if args[1] == "-f":
-            buscar = args[2]
-            if not buscar:
-                return "No ingresaste nada."
-            print(f"Buscando: {buscar}")
-            files = l($(find . -type f | egrep -v ".git|node_modules" | grep -i @(buscar)))
-            if len(files) == 0:
-                return "No hay resultados.\nBusqueda terminda."
-            from colorama import Fore
-            from re import search, IGNORECASE
-            resultado = []
-            for stringSearch in files:
-                objMath = search(buscar, stringSearch, flags=IGNORECASE)
-                inicio = stringSearch[:objMath.start()]
-                medio = stringSearch[objMath.start():objMath.end()]
-                fin = stringSearch[objMath.end():]
-                resultado.append(f"{inicio}{Fore.BLUE}{medio}{Fore.RESET}{fin}")
-            print("\n".join(resultado))
-            return "Busqueda terminada"
-
-        # SE AGREGÓ FLAG -o PARA ESPECIFICAR ORACIÓN A BUSCAR, PARA CONTINUAR
-        # CON LA COMPATIBILIDAD DE LA VERSION ANTERIOR POR DEFECTO TOMARÁ EL
-        # SEGUNDO ARGUMENTO PASADO A LA CLI.
-        buscar = args[1] if "-o" not in args else traerOpcion("-o")
-        # SI SE MANDA EL PARAMETRO -d SE TOMA Y CONVIERTE EN LISTA, POR EJEMPLO
-        # app,resources,src => ['app', 'resources', 'src']. SI NO SE DA LA
-        # OPCION, ENTONCES BUSCARÁ DESDE LA RAIZ DEL DIRECTORIO.
-        directorios = ['./'] if "-d" not in args else traerOpcion("-d").split(",")
-        print(buscar)
-        for directorio in directorios:
-            grep -Rin @(buscar) @(directorio)
-            #grep -Ril @(buscar) @(directorio)
-        return "Busqueda terminada"
-    if env in ["php7.4", "php7.3"]:
-        php(args)
-    elif env in ["mysql", "nginx", "docker"]:
-        globals()[env](args[1:])
-    else:
-        return DEV_HELP
+    workingdir = $(pwd)[:-1]
+    dockercompose(workingdir, args)
+    return 1
 
 
 def php(args):
