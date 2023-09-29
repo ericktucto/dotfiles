@@ -39,11 +39,11 @@ vim.o.relativenumber = true
 vim.o.updatetime = 100
 
 vim.o.shell = "/usr/bin/xonsh"
-
-vim.g.mapleader = " "
+vim.cmd([[ let mapleader = "\<C-h>" ]])
+-- vim.g.mapleader = [[ "\<C-h>" ]]
 
 vim.opt.list = true
-vim.opt.listchars = { trail = '·', eol = '↴', nbsp = '%' } --, tab = ' ' }
+vim.opt.listchars = { trail = '·', eol = '↴', nbsp = '%', tab = '> ' }
 vim.g.python3_host_prog='/usr/bin/python3'
 
 vim.opt.listchars["extends"] = "eol:↴"
