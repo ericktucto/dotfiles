@@ -1,4 +1,5 @@
 -- MODOS PARA LA BUSQUEDA DE ARCHIVOS EN UN PROYECTO
+local preview = string.format('%s/scripts/previewer {}', vim.fn.stdpath('config'))
 function Searching(view)
   if (view == 'git') then
     local excludedDir = table.concat({
@@ -15,7 +16,7 @@ function Searching(view)
       '"./clockwork/*"',
     }, " -not -path ")
     vim.fn["fzf#run"]({
-      options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
+      options = { '--layout=reverse', '--preview', preview },
       window = { width = 1, height = 1 },
       source = 'find . -name "*.*" -type f'..excludedDir,
       sink = "e"
@@ -27,7 +28,7 @@ function Searching(view)
       })
   elseif (view == 'git-status') then
     vim.fn["fzf#run"]({
-      options = { '--layout=reverse', '--preview', 'batcat -n --color=always {}' },
+      options = { '--layout=reverse', '--preview', preview },
       window = { width = 1, height = 1 },
       source = string.format('%s/scripts/gitstatus.py', vim.fn.stdpath('config')),
       sink = "e"
@@ -55,7 +56,7 @@ function FindWord(query, fullscreen)
   local initial_command = string.format(commandSearch, excludedDir, "''")
   local reload_command = string.format(commandSearch, excludedDir, '{q}')
 
-  local preview = string.format('%s/scripts/previewer {}', vim.fn.stdpath('config'))
+  -- local preview = string.format('%s/scripts/previewer {}', vim.fn.stdpath('config'))
   local spec = {
     options = {
       '--phony',
