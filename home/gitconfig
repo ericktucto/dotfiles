@@ -5,14 +5,26 @@
   back = reset HEAD^
   ecommit = "!~/.scripts/git.xsh ecommit"
   publish = push origin HEAD
-  update = "!~/.scripts/git.xsh update"
+  update = "!git pull origin $(git branch --show-current)"
+  addm = "!~/.scripts/gitaddmodified.sh"
 [core]
   editor = nvim
 [pull]
   rebase = false
 [cola]
   spellcheck = false
+	startupmode = folder
 [protocol "file"]
 	allow = always
 [init]
 	defaultBranch = main
+[diff]
+	tool = meld
+[merge]
+	tool = tkdiff
+[difftool]
+	prompt = false
+[safe]
+	directory = /opt/flutter
+[gui]
+	editor = nvim-qt
