@@ -3,17 +3,17 @@ from os.path import isfile
 # GENERAL SETTINGS
 #$BASE16_SHELL=f"{$HOME}/.config/base16-shell/"
 $XONSH_SHOW_TRACEBACK = True
-$XONSH_TRACEBACK_LOGFILE = f"{$HOME}/.xonsh/errors.log"
+$XONSH_TRACEBACK_LOGFILE = f"~/.xonsh/errors.log"
 $FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
-$ANDROID_HOME = f"{$HOME}/Android/Sdk"
+$ANDROID_HOME = "~/Android/Sdk"
 $TERM='xterm-256color'
 
 # VULKAN
 $VK_ICD_FILENAMES = "/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.js"
 
 # MI PATH
-$PATH.append(f"{$HOME}/.cargo/env")
-$PATH.append(f"{$ANDROID_HOME}/platform-tools")
+$PATH.append("~/.cargo/env")
+$PATH.append("%s/platform-tools" % $ANDROID_HOME)
 $PATH.append('/opt/blender')
 $PATH.append('/opt/node14/bin')
 $PATH.append('/opt/ngrok')
@@ -24,11 +24,12 @@ $PATH.append('~/.yarn/bin')
 $PATH.append('~/.config/composer/vendor/bin')
 $PATH.append('~/.npm-global/bin')
 $PATH.append('~/.local/bin')
-$PATH.append(f"{$HOME}/Tools/azuredatastudio")
+$PATH.append("~/Tools/azuredatastudio")
+$PATH.append("~/.pub-cache/bin")
 
 # ENVIRONMENT VARIABLES
 $TERM = "xterm-color"
-$NVM_DIR=f"{$HOME}/.nvm"
+$NVM_DIR=f"~/.nvm"
 $TITLE = 'Terminal'
 
 # LOAD SOURCES BASH
@@ -57,7 +58,7 @@ s = lambda cmd : cmd.strip('\n') if type(cmd) is str else cmd
 l = lambda cmd : cmd.split('\n')[:-1] if type(cmd) is str else cmd
 
 # LOAD CUSTOM SETTINGS
-if (isfile(f"{$HOME}/.xonsh/personal.xsh")):
+if (isfile(f"~/.xonsh/personal.xsh")):
     source $HOME/.xonsh/personal.xsh
 
 chprompt profile default

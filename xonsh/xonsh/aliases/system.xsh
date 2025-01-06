@@ -43,7 +43,7 @@ def alarm(args):
             return False if len(args) <= indice else args[indice]
         return False
 
-    beepPath = f"{$HOME}/Música/beep1.mp3"
+    beepPath = "~/Música/beep1.mp3"
     repetir = int(opcion("-r")) if opcion("-r") else 2
     tiempo = opcion("-t") if opcion("-t") else "0.015s"
 
