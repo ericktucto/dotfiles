@@ -3,6 +3,7 @@
 ########
 /nvim/current
 /nvim/pack/
+/nvim/lazy-lock.json
 
 
 #########
